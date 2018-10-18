@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      test: [],
+    }
+  }
+  componentDidMount() {
+    axios.get('/')
+      .then((response) => {
+        console.log(response)
+      })
+  }
   render() {
     return (
       <div className="App">
-        Hello World
+        {this.state.test}
       </div>
     );
   }
