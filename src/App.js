@@ -4,13 +4,27 @@ import logo from './logo.svg';
 import './styles/App.scss';
 import TopNavbar from './Top-navbar';
 import MainContainer from './Main-container';
+import axios from 'axios';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      test: [],
+    }
+  }
+  componentDidMount() {
+    axios.get('/')
+      .then((response) => {
+        console.log(response)
+      })
+  }
   render() {
     return (
-      <div>
+      <div className="App">
         <TopNavbar />
         <MainContainer />
+        {this.state.test}
       </div>
     );
   }
