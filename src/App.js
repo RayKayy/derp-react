@@ -16,7 +16,7 @@ class App extends Component {
   componentDidMount() {
     axios.get('/')
       .then((response) => {
-        console.log(response)
+        // console.log(response)
       })
   }
   render() {
@@ -24,7 +24,7 @@ class App extends Component {
       <div className="App">
         <TopNavbar />
         <MainContainer />
-        {this.state.test}
+        {/* {this.state.test} */}
       </div>
     );
   }
