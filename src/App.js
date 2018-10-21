@@ -17,17 +17,24 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    axios.get('/')
+    axios.get('/api')
       .then((response) => {
-        // console.log(response)
+        const res = response
+        this.setState({
+          events:
+          {name:res.data.businesses[0].name,
+            img:res.data.businesses[0].image_url
+          }
+        })
+        console.log(res)
       })
-  }
+    }
+
   render() {
     return (
       <div className="App">
         <TopNavbar />
-        <MainContainer />
-        {/* {this.state.test} */}
+        < MainContainer restaurant={this.state.events}/>
       </div>
     );
   }

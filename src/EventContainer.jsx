@@ -6,7 +6,7 @@ class EventContainer extends Component {
   render() {
     return (
       <div className="event-container">
-        <Restaurant />
+        <Restaurant restaurant={this.props.restaurant}/>
       </div>);
   }
 }
