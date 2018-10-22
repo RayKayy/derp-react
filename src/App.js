@@ -13,7 +13,9 @@ class App extends Component {
       location: {},
       events: [{}],
       filters: {},
-      test: []
+      params: {
+        skeleton: []
+      }
     }
   }
   componentDidMount() {
@@ -22,6 +24,7 @@ class App extends Component {
         const min = 0;
         const max = res.data.businesses.length - 1;
         const rand = Math.round(min + (Math.random() * (max - min)));
+        console.log(res);
         this.setState({
           events:
           {
@@ -30,15 +33,37 @@ class App extends Component {
             url: res.data.businesses[rand].url
           }
         })
-        console.log(res)
       })
+      navigator.geolocation.getCurrentPosition((position)=>{
+        this.setState({params: {
+          ...this.state.params,
+          coords: {lng: position.coords.longitude, lat: position.coords.latitude}
+        }});
+      });
+      // this._getItinerary(this.state.params)
+    }
+
+    _getItinerary(params) {
+      axios.get('/api/itinerary', { params })
+        .then((res) => {
+          // this.setState({ itinerary: res.itinerary })
+          console.log(res.itinerary);
+        })
+    }
+
+    _addSkeleton = (type) => {
+      this.setState({ params: {skeleton: [...this.state.params.skeleton, type] }});
     }
 
   render() {
     return (
       <div className="App">
         <TopNavbar />
-        <MainContainer restaurant={this.state.events}/>
+        <MainContainer
+          restaurant={this.state.events}
+          params={this.state.params}
+          addSkeleton={this._addSkeleton}
+        />
       </div>
     );
   }

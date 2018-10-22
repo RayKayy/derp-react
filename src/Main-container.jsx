@@ -7,8 +7,11 @@ class MainContainer extends Component {
   render() {
     return (
     <div className="main-container">
-      <EventGeneratorButton />
-      <EventContainer restaurant={this.props.restaurant}/>
+      <EventGeneratorButton
+        params={this.props.params}
+        addSkeleton={this.props.addSkeleton}
+      />
+      {/* <EventContainer restaurant={this.props.restaurant}/> */}
     </div>);
   }
 }

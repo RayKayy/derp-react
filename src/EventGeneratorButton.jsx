@@ -1,15 +1,48 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import './styles/event-generator-button.scss';
+import './styles/react-datetime.scss';
+import Datetime from 'react-datetime';
 
 class EventGeneratorButton extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      type: 'Restaurant'
+    }
+  }
+
+  _handleChange = (e) => {
+    this.setState({ type: e.target.value });
+  }
+
+  _addSkeleton = () => {
+    this.props.addSkeleton(this.state.type);
+  }
+
   render() {
     return (
       <div className="event-generator">
         <h1>Welcome User! Plan you day with just a click of a button!!!</h1>
-        <Button bsStyle="success" bsSize="large">
+        <Button className="derp" bsStyle="success" bsSize="large">
           DERP
         </Button>
+        <h2>Add events to your Itinerary</h2>
+        <FormGroup controlId="formControlsSelect">
+          <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
+          <Datetime />
+          <FormControl onChange={this._handleChange} value={this.state.type} componentClass="select" placeholder="select">
+            <option value="Restaurant">Restaurant</option>
+            <option value="Movie">Movie</option>
+          </FormControl>
+        </FormGroup>
+
+        <Button onClick={this._addSkeleton} type="add">Add</Button>
+
+        <h3>Itinerary</h3>
+        <ul className="skeleton" >
+          {this.props.params.skeleton.map((e)=> <li>{e}</li>)}
+        </ul>
     </div>
     );
   }

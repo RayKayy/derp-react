@@ -13,7 +13,7 @@ class Restaurant extends Component {
             </Media.Left>
             <Media.Body>
               <Media.Heading>{this.props.restaurant.name}</Media.Heading>
-              <p>
+              <p className="text-justify">
                 Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
                 ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,
                 tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
