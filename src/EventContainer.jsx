@@ -7,6 +7,7 @@ class EventContainer extends Component {
     return (
       <div className="event-container">
         <Restaurant restaurant={this.props.restaurant}/>
+        <Restaurant restaurant={this.props.restaurant}/>
       </div>);
   }
 }

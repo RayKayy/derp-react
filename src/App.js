@@ -18,12 +18,16 @@ class App extends Component {
   }
   componentDidMount() {
     axios.get('/api')
-      .then((response) => {
-        const res = response
+      .then((res) => {
+        const min = 0;
+        const max = res.data.businesses.length - 1;
+        const rand = Math.round(min + (Math.random() * (max - min)));
         this.setState({
           events:
-          {name:res.data.businesses[0].name,
-            img:res.data.businesses[0].image_url
+          {
+            name: res.data.businesses[rand].name,
+            img: res.data.businesses[rand].image_url,
+            url: res.data.businesses[rand].url
           }
         })
         console.log(res)
@@ -34,7 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <TopNavbar />
-        < MainContainer restaurant={this.state.events}/>
+        <MainContainer restaurant={this.state.events}/>
       </div>
     );
   }
