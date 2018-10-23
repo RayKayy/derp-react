@@ -20,30 +20,30 @@ class App extends Component {
       }
     }
   }
-  componentDidMount() {
-    axios.get('/api')
-      .then((res) => {
-        const min = 0;
-        const max = res.data.businesses.length - 1;
-        const rand = Math.round(min + (Math.random() * (max - min)));
-        console.log(res);
-        this.setState({
-          events:
-          {
-            name: res.data.businesses[rand].name,
-            img: res.data.businesses[rand].image_url,
-            url: res.data.businesses[rand].url
-          }
-        })
-      })
-      navigator.geolocation.getCurrentPosition((position)=>{
-        this.setState({params: {
-          ...this.state.params,
-          coords: {lng: position.coords.longitude, lat: position.coords.latitude}
-        }});
-      });
-      // this._getItinerary(this.state.params)
-    }
+  // componentDidMount() {
+  //   axios.get('/api')
+  //     .then((res) => {
+  //       const min = 0;
+  //       const max = res.data.businesses.length - 1;
+  //       const rand = Math.round(min + (Math.random() * (max - min)));
+  //       console.log(res);
+  //       this.setState({
+  //         events:
+  //         {
+  //           name: res.data.businesses[rand].name,
+  //           img: res.data.businesses[rand].image_url,
+  //           url: res.data.businesses[rand].url
+  //         }
+  //       })
+  //     })
+  //     navigator.geolocation.getCurrentPosition((position)=>{
+  //       this.setState({params: {
+  //         ...this.state.params,
+  //         coords: {lng: position.coords.longitude, lat: position.coords.latitude}
+  //       }});
+  //     });
+  //     // this._getItinerary(this.state.params)
+  //   }
 
     _getItinerary(params) {
       axios.get('/api/itinerary', { params })
