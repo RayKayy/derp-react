@@ -14,7 +14,8 @@ class App extends Component {
       events: [{}],
       filters: {},
       params: {
-        skeleton: []
+        skeleton: [],
+        date: ''
       }
     }
   }
@@ -52,7 +53,11 @@ class App extends Component {
     }
 
     _addSkeleton = (type) => {
-      this.setState({ params: {skeleton: [...this.state.params.skeleton, type] }});
+      this.setState({ params: {...this.state.params, skeleton: [...this.state.params.skeleton, type] }});
+    }
+
+    _handleDate = (date) => {
+      this.setState({ params: {...this.state.params, date: date}});
     }
 
   render() {
@@ -63,6 +68,7 @@ class App extends Component {
           restaurant={this.state.events}
           params={this.state.params}
           addSkeleton={this._addSkeleton}
+          handleDate={this._handleDate}
         />
       </div>
     );

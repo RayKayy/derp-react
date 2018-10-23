@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-import './styles/event-generator-button.scss';
+import './styles/event-generator.scss';
 import './styles/react-datetime.scss';
 import Datetime from 'react-datetime';
 
-class EventGeneratorButton extends Component {
+class EventGenerator extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -20,6 +20,10 @@ class EventGeneratorButton extends Component {
     this.props.addSkeleton(this.state.type);
   }
 
+  _handleDate = (date) => {
+    this.props.handleDate(date._d);
+  }
+
   render() {
     return (
       <div className="event-generator">
@@ -30,14 +34,14 @@ class EventGeneratorButton extends Component {
         <h2>Add events to your Itinerary</h2>
         <FormGroup controlId="formControlsSelect">
           <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
-          <Datetime />
+          <Datetime onChange={this._handleDate} />
           <FormControl onChange={this._handleChange} value={this.state.type} componentClass="select" placeholder="select">
             <option value="Restaurant">Restaurant</option>
             <option value="Movie">Movie</option>
           </FormControl>
         </FormGroup>
 
-        <Button onClick={this._addSkeleton} type="add">Add</Button>
+        <Button onClick={this._addSkeleton} >Add</Button>
 
         <h3>Itinerary</h3>
         <ul className="skeleton" >
@@ -48,4 +52,4 @@ class EventGeneratorButton extends Component {
   }
 }
 
-export default EventGeneratorButton;
+export default EventGenerator;
