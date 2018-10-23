@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, Button, Modal, Form, FormGroup, Col, FormControl, NavItem } from 'react-bootstrap';
+import axios from 'axios';
 import './styles/login-signup.scss';
 
 class UserSignUp extends Component {
@@ -20,6 +21,26 @@ class UserSignUp extends Component {
 
   handleHide() {
     this.setState({ show: false });
+  }
+
+  handleRegistration = () => {
+    axios.post('/register', {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation
+    })
+      .then((response) => {
+        console.log(response);
+        this.setState({ show: false });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  handleFormChange = (key) => (e) => {
+    this.setState({[key]: e.target.value}, () => {console.log(this.state)});
   }
 
   render() {
@@ -48,7 +69,7 @@ class UserSignUp extends Component {
                     Name
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="text" placeholder="Name" />
+                    <FormControl onChange={this.handleFormChange('name')} type="text" placeholder="Name" />
                   </Col>
                 </FormGroup>
 
@@ -57,7 +78,7 @@ class UserSignUp extends Component {
                     Email
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="email" placeholder="Email" />
+                    <FormControl onChange={this.handleFormChange('email')} type="email" placeholder="Email" />
                   </Col>
                 </FormGroup>
 
@@ -66,13 +87,22 @@ class UserSignUp extends Component {
                     Password
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="password" placeholder="Password" />
+                    <FormControl onChange={this.handleFormChange('password')} type="password" placeholder="Password" />
+                  </Col>
+                </FormGroup>
+
+                <FormGroup controlId="formHorizontalPassword_confirmation">
+                  <Col sm={2}>
+                    Confirm Password
+                  </Col>
+                  <Col sm={10}>
+                    <FormControl onChange={this.handleFormChange('password_confirmation')} type="password" placeholder="Password" />
                   </Col>
                 </FormGroup>
 
                 <FormGroup>
                   <Col smOffset={2} sm={10}>
-                    <Button onClick={this.handleHide} type="submit">Register</Button>
+                    <Button onClick={this.handleRegistration} type="submit">Register</Button>
                   </Col>
                 </FormGroup>
               </Form>
