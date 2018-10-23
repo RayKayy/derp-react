@@ -39,7 +39,7 @@ class EventGenerator extends Component {
     return (
       <div className="event-generator">
         <h1>Welcome User! Plan you day with just a click of a button!!!</h1>
-        <Button className="derp" bsStyle="success" bsSize="large">
+        <Button onClick={this.props.generateItinerary} className="derp" bsStyle="success" bsSize="large">
           DERP
         </Button>
         <h2>Add events to your Itinerary</h2>

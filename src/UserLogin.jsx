@@ -1,25 +1,44 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, Button, Modal, Form, FormGroup, Col, FormControl, NavItem } from 'react-bootstrap';
+import axios from 'axios';
 import './styles/login-signup.scss';
 
 class UserLogin extends Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleHide = this.handleHide.bind(this);
-
     this.state = {
       show: false
     };
   }
 
-  handleShow() {
+  handleShow = () => {
     this.setState({ show: true });
   }
 
-  handleHide() {
+  handleHide = () => {
     this.setState({ show: false });
+  }
+
+  handleLogin = () => {
+    axios.post('/login', {
+      email: this.state.email,
+      password: this.state.password
+    })
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          show: false,
+          email: '',
+          password: ''
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  handleFormChange = (key) => (e) => {
+    this.setState({ [key]: e.target.value }, () => { console.log(this.state) });
   }
 
   render() {
@@ -48,7 +67,7 @@ class UserLogin extends Component {
                     Email
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="email" placeholder="Email" />
+                    <FormControl onChange={this.handleFormChange('email')} type="email" placeholder="Email" />
                   </Col>
                 </FormGroup>
 
@@ -57,13 +76,13 @@ class UserLogin extends Component {
                     Password
                   </Col>
                   <Col sm={10}>
-                    <FormControl type="password" placeholder="Password" />
+                    <FormControl onChange={this.handleFormChange('password')} type="password" placeholder="Password" />
                   </Col>
                 </FormGroup>
 
                 <FormGroup>
                   <Col smOffset={2} sm={10}>
-                    <Button onClick={this.handleHide} type="submit">Sign in</Button>
+                    <Button onClick={this.handleLogin} type="submit">Sign in</Button>
                   </Col>
                 </FormGroup>
               </Form>

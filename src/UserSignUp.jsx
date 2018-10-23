@@ -6,20 +6,16 @@ import './styles/login-signup.scss';
 class UserSignUp extends Component {
   constructor(props, context) {
     super(props, context);
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleHide = this.handleHide.bind(this);
-
     this.state = {
       show: false
     };
   }
 
-  handleShow() {
+  handleShow = () => {
     this.setState({ show: true });
   }
 
-  handleHide() {
+  handleHide = () => {
     this.setState({ show: false });
   }
 
@@ -32,7 +28,13 @@ class UserSignUp extends Component {
     })
       .then((response) => {
         console.log(response);
-        this.setState({ show: false });
+        this.setState({
+          show: false,
+          name: '',
+          email: '',
+          password: '',
+          password_confirmation: ''
+        });
       })
       .catch((error) => {
         console.log(error);
