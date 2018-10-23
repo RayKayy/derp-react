@@ -31,7 +31,6 @@ class App extends Component {
     }
 
     _generateItinerary = () => {
-      console.log("GENERATING SSDSSVDFGSGVSDVSD");
       axios.post('/api/itinerary', { ...this.state.params })
         .then((res) => {
           //this.setState({ itinerary: res.itinerary })
