@@ -24,6 +24,17 @@ class EventGenerator extends Component {
     this.props.handleDate(date._d);
   }
 
+  _handleEndTime = (time) => {
+    const hour = time._d.getHours();
+    let minutes = '';
+    if (time._d.getMinutes() < 10) {
+      minutes = `0${time._d.getMinutes()}`
+    } else if (time._d.getMinutes() >= 10) {
+      minutes = time._d.getMinutes()
+    }
+    this.props.handleEndTime(`${hour}:${minutes}`);
+  }
+
   render() {
     return (
       <div className="event-generator">
@@ -33,8 +44,11 @@ class EventGenerator extends Component {
         </Button>
         <h2>Add events to your Itinerary</h2>
         <FormGroup controlId="formControlsSelect">
-          <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
+          <h5>Select start time</h5>
           <Datetime onChange={this._handleDate} />
+          <h5>Select end time</h5>
+          <Datetime onChange={this._handleEndTime} dateFormat={false} />
+          <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
           <FormControl onChange={this._handleChange} value={this.state.type} componentClass="select" placeholder="select">
             <option value="Restaurant">Restaurant</option>
             <option value="Movie">Movie</option>

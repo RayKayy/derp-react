@@ -15,7 +15,8 @@ class App extends Component {
       filters: {},
       params: {
         skeleton: [],
-        date: ''
+        date: '',
+        endTime: ''
       }
     }
   }
@@ -60,6 +61,10 @@ class App extends Component {
       this.setState({ params: {...this.state.params, date: date}});
     }
 
+    _handleEndTime = (time) => {
+      this.setState({ params: {...this.state.params, endTime: time}}, () => {console.log(this.state.params);});
+    }
+
   render() {
     return (
       <div className="App">
@@ -69,6 +74,7 @@ class App extends Component {
           params={this.state.params}
           addSkeleton={this._addSkeleton}
           handleDate={this._handleDate}
+          handleEndTime={this._handleEndTime}
         />
       </div>
     );
