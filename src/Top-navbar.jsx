@@ -10,7 +10,6 @@ class TopNavbar extends Component {
   _handleLogout = () => {
     axios.get('/logout')
       .then((response) => {
-        console.log(response);
         window.alert('logout successful')
       })
   }
