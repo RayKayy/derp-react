@@ -12,7 +12,7 @@ module.exports = function (app) {
     target: 'http://localhost:3000/'
   }));
 
-  app.use(proxy('/api/itinerary', {
+  app.use(proxy('/itineraries', {
     target: 'http://localhost:3000/'
   }));
 
