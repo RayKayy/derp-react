@@ -13,6 +13,8 @@ class MainContainer extends Component {
         handleDate={this.props.handleDate}
         handleEndTime={this.props.handleEndTime}
         generateItinerary={this.props.generateItinerary}
+        startTime={this.props.startTime}
+        endTime={this.props.endTime}
       />
       {/* <EventContainer restaurant={this.props.restaurant}/> */}
     </div>);

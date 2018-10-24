@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, Button, Modal, Form, FormGroup, Col, FormControl, NavItem } from 'react-bootstrap';
 import axios from 'axios';
+import ErrorLogin from './ErrorLogin';
 import './styles/login-signup.scss';
 
 class UserLogin extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      show: false
+      show: false,
+      error: false
     };
   }
 
@@ -16,24 +18,40 @@ class UserLogin extends Component {
   }
 
   handleHide = () => {
-    this.setState({ show: false });
+    this.setState({ show: false, error: false });
   }
 
   handleLogin = () => {
+    this.setState({ error: false });
     axios.post('/login', {
       email: this.state.email,
       password: this.state.password
     })
       .then((response) => {
-        console.log(response);
-        this.setState({
-          show: false,
-          email: '',
-          password: ''
-        });
+        if(response.data.error){
+          this.setState({
+            show: true,
+            error: true,
+            email: '',
+            password: ''
+          });
+        } else {
+          this.setState({
+            show: false,
+            error: false,
+            email: '',
+            password: ''
+          });
+      }
       })
       .catch((error) => {
         console.log(error);
+        this.setState({
+          show: true,
+          error: true,
+          email: '',
+          password: ''
+        });
       });
   }
 
@@ -61,13 +79,14 @@ class UserLogin extends Component {
           </Modal.Header>
           <Modal.Body>
             <p>
+              <ErrorLogin error={this.state.error} />
               <Form horizontal>
                 <FormGroup controlId="formHorizontalEmail">
                   <Col sm={2}>
                     Email
                   </Col>
                   <Col sm={10}>
-                    <FormControl onChange={this.handleFormChange('email')} type="email" placeholder="Email" />
+                    <FormControl value={this.state.email} onChange={this.handleFormChange('email')} type="email" placeholder="Email" />
                   </Col>
                 </FormGroup>
 
@@ -76,7 +95,7 @@ class UserLogin extends Component {
                     Password
                   </Col>
                   <Col sm={10}>
-                    <FormControl onChange={this.handleFormChange('password')} type="password" placeholder="Password" />
+                    <FormControl value={this.state.password} onChange={this.handleFormChange('password')} type="password" placeholder="Password" />
                   </Col>
                 </FormGroup>
 

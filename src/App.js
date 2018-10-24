@@ -15,8 +15,8 @@ class App extends Component {
       filters: {},
       params: {
         skeleton: [],
-        date: '',
-        endTime: ''
+        startTime: new Date(),
+        endTime: new Date()
       }
     }
   }
@@ -28,14 +28,14 @@ class App extends Component {
         }});
       });
       // this._getItinerary(this.state.params)
+      // console.log(process.env.REACT_APP_GOOGLE_KEY);
     }
 
     _generateItinerary = () => {
-      console.log("GENERATING SSDSSVDFGSGVSDVSD");
       axios.post('/api/itinerary', { ...this.state.params })
         .then((res) => {
           //this.setState({ itinerary: res.itinerary })
-          console.log(res.itinerary);
+          console.log(res);
         })
     }
 
@@ -44,11 +44,11 @@ class App extends Component {
     }
 
     _handleDate = (date) => {
-      this.setState({ params: {...this.state.params, date: date}});
+      this.setState({ params: {...this.state.params, startTime: date}});
     }
 
-    _handleEndTime = (time) => {
-      this.setState({ params: {...this.state.params, endTime: time}}, () => {console.log(this.state.params);});
+    _handleEndTime = (date) => {
+      this.setState({ params: {...this.state.params, endTime: date}}, () => {console.log(this.state.params);});
     }
 
   render() {
@@ -62,6 +62,8 @@ class App extends Component {
           handleDate={this._handleDate}
           handleEndTime={this._handleEndTime}
           generateItinerary={this._generateItinerary}
+          startTime={this.state.startTime}
+          endTime={this.state.endTime}
         />
       </div>
     );
