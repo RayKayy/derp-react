@@ -32,10 +32,10 @@ class App extends Component {
     }
 
     _generateItinerary = () => {
-      axios.post('/api/itinerary', { ...this.state.params })
+      axios.post('/itineraries', { ...this.state.params })
         .then((res) => {
           //this.setState({ itinerary: res.itinerary })
-          console.log(res);
+          console.log(res.data);
         })
     }
 
