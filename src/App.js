@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './styles/App.scss';
 import TopNavbar from './Top-navbar';
 import MainContainer from './Main-container';
+import GoogleApiComponent from './GoogleApiComponent';
 import axios from 'axios';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       location: {},
-      events: [{}],
+      events: [],
       filters: {},
       params: {
         skeleton: [],
@@ -28,7 +29,13 @@ class App extends Component {
         }});
       });
       // this._getItinerary(this.state.params)
-      // console.log(process.env.REACT_APP_GOOGLE_KEY);
+    }
+
+    componentWillMount() {
+      const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_KEY;
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_KEY}&libraries=places"`;
+      document.head.append(script);
     }
 
     _generateItinerary = () => {
@@ -36,6 +43,10 @@ class App extends Component {
         .then((res) => {
           //this.setState({ itinerary: res.itinerary })
           console.log(res.data);
+<<<<<<< HEAD
+=======
+          this.setState({events: res.data.itinerary});
+>>>>>>> b1a5d1f71fb69035650e1d91754e8f48f9b81cb8
         })
     }
 
@@ -56,7 +67,6 @@ class App extends Component {
       <div className="App">
         <TopNavbar />
         <MainContainer
-          restaurant={this.state.events}
           params={this.state.params}
           addSkeleton={this._addSkeleton}
           handleDate={this._handleDate}
@@ -64,7 +74,9 @@ class App extends Component {
           generateItinerary={this._generateItinerary}
           startTime={this.state.startTime}
           endTime={this.state.endTime}
+          itinerary={this.state.events}
         />
+        <GoogleApiComponent coords={this.state.params.coords} />
       </div>
     );
   }

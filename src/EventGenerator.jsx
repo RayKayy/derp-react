@@ -3,6 +3,7 @@ import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import './styles/event-generator.scss';
 import './styles/react-datetime.scss';
 import Datetime from 'react-datetime';
+import LocationSelect from './LocationSelect';
 
 class EventGenerator extends Component {
   constructor(props){
@@ -46,6 +47,7 @@ class EventGenerator extends Component {
         </Button>
         <h2>Add events to your Itinerary</h2>
         <FormGroup controlId="formControlsSelect">
+          <LocationSelect />
           <h5>Select start time</h5>
           <Datetime onChange={this._handleDate} defaultValue={this.props.startTime} />
           <h5>Select end time</h5>
