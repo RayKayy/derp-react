@@ -43,10 +43,7 @@ class App extends Component {
         .then((res) => {
           //this.setState({ itinerary: res.itinerary })
           console.log(res.data);
-<<<<<<< HEAD
-=======
           this.setState({events: res.data.itinerary});
->>>>>>> b1a5d1f71fb69035650e1d91754e8f48f9b81cb8
         })
     }
 
