@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, Button, Modal } from 'react-bootstrap';
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 import './styles/googleApiComponent.scss';
 
 class GoogleApiComponent extends Component {
@@ -37,10 +37,6 @@ class GoogleApiComponent extends Component {
           show={this.state.show}
           onHide={this.handleHide}
           dialogClassName="map"
-          initialCenter={{
-            lat: 40.854885,
-            lng: -88.081807
-          }}
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-lg">
@@ -49,13 +45,14 @@ class GoogleApiComponent extends Component {
           </Modal.Header>
             <h4>Wrapped Text</h4>
             <Map
-              google={this.props.google}
+              google={window.google}
               zoom={14}
               style={style}
-              className="map">
-
-              <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
+              className="map"
+              initialCenter={{
+                lat: 43.653908,
+                lng: -79.384293
+              }}>
 
               <InfoWindow onClose={this.onInfoWindowClose}>
                 <div>
