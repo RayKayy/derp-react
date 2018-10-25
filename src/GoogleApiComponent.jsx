@@ -73,6 +73,6 @@ class GoogleApiComponent extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ('AIzaSyDcFke1ZrAdWqgp5zG_oQvzXP7-uHcnAt4'),
+  apiKey: (process.env.REACT_APP_GOOGLE_KEY),
   libraries: ['places']
 })(GoogleApiComponent)
