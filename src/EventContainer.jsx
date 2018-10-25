@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import Restaurant from './Restaurant';
+import Item from './Item';
 import './styles/event-container.scss';
 
 class EventContainer extends Component {
   render() {
     return (
       <div className="event-container">
-        <Restaurant restaurant={this.props.restaurant}/>
-        <Restaurant restaurant={this.props.restaurant}/>
+        {this.props.itinerary.map((event) => <Item event={event} />)}
       </div>);
   }
 }

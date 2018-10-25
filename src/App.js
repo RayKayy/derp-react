@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './styles/App.scss';
 import TopNavbar from './Top-navbar';
 import MainContainer from './Main-container';
+import GoogleApiComponent from './GoogleApiComponent';
 import axios from 'axios';
 
 class App extends Component {
@@ -11,7 +12,7 @@ class App extends Component {
     super(props);
     this.state = {
       location: {},
-      events: [{}],
+      events: [],
       filters: {},
       params: {
         skeleton: [],
@@ -28,15 +29,14 @@ class App extends Component {
         }});
       });
       // this._getItinerary(this.state.params)
-      // console.log(process.env.REACT_APP_GOOGLE_KEY);
     }
 
     _generateItinerary = () => {
       axios.post('/itineraries', { ...this.state.params })
         .then((res) => {
           //this.setState({ itinerary: res.itinerary })
-          console.log(res);
-          console.log(this.state.params);
+          console.log(res.data);
+          this.setState({events: res.data});
         })
     }
 
@@ -57,7 +57,6 @@ class App extends Component {
       <div className="App">
         <TopNavbar />
         <MainContainer
-          restaurant={this.state.events}
           params={this.state.params}
           addSkeleton={this._addSkeleton}
           handleDate={this._handleDate}
@@ -65,7 +64,9 @@ class App extends Component {
           generateItinerary={this._generateItinerary}
           startTime={this.state.startTime}
           endTime={this.state.endTime}
+          itinerary={this.state.events}
         />
+        <GoogleApiComponent coords={this.state.params.coords} />
       </div>
     );
   }

@@ -7,6 +7,9 @@ class MainContainer extends Component {
   render() {
     return (
     <div className="main-container">
+      <EventContainer
+        itinerary={this.props.itinerary}
+      />
       <EventGenerator
         params={this.props.params}
         addSkeleton={this.props.addSkeleton}
@@ -16,7 +19,6 @@ class MainContainer extends Component {
         startTime={this.props.startTime}
         endTime={this.props.endTime}
       />
-      {/* <EventContainer restaurant={this.props.restaurant}/> */}
     </div>);
   }
 }
