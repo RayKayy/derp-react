@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { ButtonToolbar, Button, Modal} from 'react-bootstrap';
 import Map from './GoogleMaps';
 // import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
+=======
+import { ButtonToolbar, Button, Modal } from 'react-bootstrap';
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
+>>>>>>> 8dd08bbc8ab4618d57a96cec7899153702d5992f
 import './styles/googleApiComponent.scss';
 
 class GoogleApiComponent extends Component {
@@ -61,6 +66,7 @@ class GoogleApiComponent extends Component {
               title={'The marker`s title will appear as a tooltip.'}
               name={'SOMA'}
               position={{ lat: 37.778519, lng: -122.405640 }} />
+
 
               <InfoWindow onClose={this.onInfoWindowClose}>
                 <div>
