@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, Button, Modal } from 'react-bootstrap';
-import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import './styles/googleApiComponent.scss';
 
 class GoogleApiComponent extends Component {
@@ -53,6 +53,7 @@ class GoogleApiComponent extends Component {
                 lat: 43.653908,
                 lng: -79.384293
               }}>
+
 
               <InfoWindow onClose={this.onInfoWindowClose}>
                 <div>

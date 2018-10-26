@@ -12,7 +12,7 @@ class Item extends Component {
             <a className="restaurant-url" href={this.props.event.url}>
               <Media className="content">
                 <Media.Left align="middle">
-                  <img width={64} height={64} src={this.props.event.image_url} alt="rest img" />
+                  <img width={64} height={64} src={this.props.event.image_url} alt="restuarant" />
                 </Media.Left>
                 <Media.Body>
                   <Media.Heading>{this.props.event.name}</Media.Heading>
@@ -25,12 +25,13 @@ class Item extends Component {
           </div>
         );
       } else if (this.props.event.type === "movie") {
+        const posterUrl = this.props.event.posters ? this.props.event.posters.image_files[0].url : ""
         return (
           <div className="movie-container">
             <a className="movie-url" href={this.props.event.booking_link}>
               <Media className="content">
                 <Media.Left align="middle">
-                  <img width={64} height={64} src={this.props.event.posters.image_files[0].url} alt="rest img" />
+                  <img width={64} height={64} src={posterUrl} alt="movie poster" />
                 </Media.Left>
                 <Media.Body>
                   <Media.Heading>{this.props.event.title}</Media.Heading>

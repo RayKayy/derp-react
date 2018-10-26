@@ -44,6 +44,7 @@ class App extends Component {
           //this.setState({ itinerary: res.itinerary })
           console.log(res.data);
           this.setState({events: res.data.itinerary});
+          this.setState({route: res.data.route});
         })
     }
 
