@@ -20,6 +20,8 @@ class MainContainer extends Component {
         endTime={this.props.endTime}
         showForm={this.props.showForm}
         toggleForm={this.props.toggleForm}
+        removeSkeletonItem={this.props.removeSkeletonItem}
+        userInputedLocation={this.props.userInputedLocation}
       />
     </div>);
   }

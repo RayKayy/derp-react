@@ -26,7 +26,7 @@ class GoogleApiComponent extends Component {
     return (
       <ButtonToolbar>
         <Button bsStyle="primary" onClick={this.handleShow}>
-          Launch demo modal
+          View Locations On Map
         </Button>
 
         <Modal
