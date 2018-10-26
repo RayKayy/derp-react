@@ -4,8 +4,8 @@ import logo from './logo.svg';
 import './styles/App.scss';
 import TopNavbar from './Top-navbar';
 import MainContainer from './Main-container';
-import GoogleApiComponent from './GoogleApiComponent';
 import axios from 'axios';
+import GoogleApiComponent from './GoogleApiComponent';
 
 class App extends Component {
   constructor(props) {
@@ -60,6 +60,29 @@ class App extends Component {
       this.setState({ params: {...this.state.params, endTime: date}}, () => {console.log(this.state.params);});
     }
 
+    _removeSkeletonItem = (i) => () => {
+      console.log(i);
+      let newSkele = this.state.params.skeleton
+      newSkele.splice(i, 1);
+      this.setState({
+        params: { ...this.state.params,
+          skeleton: newSkele
+        }
+      });
+    }
+
+    _userInputedLocation = (latLng) => {
+      this.setState({
+        params: {
+          ...this.state.params,
+          coords: {
+            lng: latLng.lng,
+            lat: latLng.lat
+          }
+        }
+      });
+    }
+
   render() {
     return (
       <div className="App">
@@ -73,8 +96,10 @@ class App extends Component {
           startTime={this.state.startTime}
           endTime={this.state.endTime}
           itinerary={this.state.events}
+          removeSkeletonItem={this._removeSkeletonItem}
+          userInputedLocation={this._userInputedLocation}
         />
-        <GoogleApiComponent coords={this.state.params.coords} locations={this.state.events} />
+        < GoogleApiComponent/>
       </div>
     );
   }

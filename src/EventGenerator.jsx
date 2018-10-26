@@ -4,6 +4,7 @@ import './styles/event-generator.scss';
 import './styles/react-datetime.scss';
 import Datetime from 'react-datetime';
 import LocationSelect from './LocationSelect';
+import SkeletonItem from './SkeletonItem';
 
 class EventGenerator extends Component {
   constructor(props){
@@ -47,7 +48,7 @@ class EventGenerator extends Component {
         </Button>
         <h2>Add events to your Itinerary</h2>
         <FormGroup controlId="formControlsSelect">
-          <LocationSelect />
+          <LocationSelect userInputedLocation={this.props.userInputedLocation}/>
           <h5>Select start time</h5>
           <Datetime onChange={this._handleDate} defaultValue={this.props.startTime} />
           <h5>Select end time</h5>
@@ -61,9 +62,9 @@ class EventGenerator extends Component {
 
         <Button onClick={this._addSkeleton} >Add</Button>
 
-        <h3>Itinerary</h3>
+        <h3>Itinerary Template</h3>
         <ul className="skeleton" >
-          {this.props.params.skeleton.map((e)=> <li>{e}</li>)}
+          {this.props.params.skeleton.map((e, i) => <SkeletonItem delete={this.props.removeSkeletonItem(i)} e={e} /> )}
         </ul>
     </div>
     );

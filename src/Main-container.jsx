@@ -18,6 +18,8 @@ class MainContainer extends Component {
         generateItinerary={this.props.generateItinerary}
         startTime={this.props.startTime}
         endTime={this.props.endTime}
+        removeSkeletonItem={this.props.removeSkeletonItem}
+        userInputedLocation={this.props.userInputedLocation}
       />
     </div>);
   }
