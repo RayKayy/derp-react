@@ -9,7 +9,7 @@ class Item extends Component {
       if (this.props.event.type === "restaurant") {
         return (
           <div className="restaurant-container">
-            <a className="restaurant-url" href={this.props.event.url}>
+            <a className="restaurant-url" rel="noopener noreferrer" target="_blank" href={this.props.event.url}>
               <Media className="content">
                 <Media.Left align="middle">
                   <img width={64} height={64} src={this.props.event.image_url} alt="rest img" />
@@ -27,7 +27,7 @@ class Item extends Component {
       } else if (this.props.event.type === "movie") {
         return (
           <div className="movie-container">
-            <a className="movie-url" href={this.props.event.booking_link}>
+            <a target="_blank" rel="noopener noreferrer" className="movie-url" href={this.props.event.booking_link}>
               <Media className="content">
                 <Media.Left align="middle">
                   <img width={64} height={64} src={this.props.event.posters.image_files[0].url} alt="rest img" />

@@ -31,12 +31,19 @@ class App extends Component {
       // this._getItinerary(this.state.params)
     }
 
+    // componentWillMount() {
+    //   const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_KEY;
+    //   const script = document.createElement('script');
+    //   script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_KEY}&libraries=places"`;
+    //   document.head.append(script);
+    // }
+
     _generateItinerary = () => {
       axios.post('/itineraries', { ...this.state.params })
         .then((res) => {
           //this.setState({ itinerary: res.itinerary })
           console.log(res.data);
-          this.setState({events: res.data});
+          this.setState({events: res.data.itinerary});
         })
     }
 
@@ -66,7 +73,7 @@ class App extends Component {
           endTime={this.state.endTime}
           itinerary={this.state.events}
         />
-        <GoogleApiComponent coords={this.state.params.coords} />
+        <GoogleApiComponent coords={this.state.params.coords} locations={this.state.events} />
       </div>
     );
   }
