@@ -24,6 +24,7 @@ class MainContainer extends Component {
         toggleForm={this.props.toggleForm}
         removeSkeletonItem={this.props.removeSkeletonItem}
         userInputedLocation={this.props.userInputedLocation}
+        derping={this.props.derping}
       />
     </div>);
   }

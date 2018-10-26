@@ -5,11 +5,13 @@ import './styles/App.scss';
 import TopNavbar from './Top-navbar';
 import MainContainer from './Main-container';
 import axios from 'axios';
+import LoadingBalls from './LoadingBalls'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      derping: false,
       showWelcome: true,
       showForm: true,
       location: {},
@@ -34,14 +36,19 @@ class App extends Component {
   }
 
   _generateItinerary = () => {
-    this.setState({ showForm: false })
+    this.setState({
+      showForm: false,
+      derping: true,
+    })
     axios.post('/itineraries', { ...this.state.params })
       .then((res) => {
-        //this.setState({ itinerary: res.itinerary })
         console.log(res.data);
-        this.setState({events: res.data.itinerary});
-        this.setState({route: res.data.google_directions});
-        this.setState({showWelcome: false})
+        this.setState({
+          events: res.data.itinerary,
+          route: res.data.google_directions,
+          showWelcome: false,
+          derping: false,
+        });
       })
   }
 
@@ -104,6 +111,7 @@ class App extends Component {
           userInputedLocation={this._userInputedLocation}
           userGivenLocation={this.state.params.coords}
           route={this.state.route}
+          derping={this.state.derping}
         />
       </div>
     );

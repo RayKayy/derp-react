@@ -6,6 +6,7 @@ import './styles/react-datetime.scss';
 import Datetime from 'react-datetime';
 import LocationSelect from './LocationSelect';
 import SkeletonItem from './SkeletonItem';
+import LoadingBalls from './LoadingBalls'
 
 class EventGenerator extends Component {
   constructor(props){
@@ -37,7 +38,7 @@ class EventGenerator extends Component {
     return (
       <div className="event-generator">
         <Button onClick={this.props.generateItinerary} className="derp" bsStyle="success" bsSize="large">
-          DERP
+          {this.props.derping ? <LoadingBalls /> : 'DERP'}
         </Button>
         <h2>Add events to your Itinerary</h2>
         {/* {this.props.params.skeleton.length === 0 && <h2>Add events to your Itinerary</h2>} */}
