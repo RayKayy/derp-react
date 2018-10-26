@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Button, FormGroup, ControlLabel, Table } from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './styles/event-generator.scss';
 import './styles/react-datetime.scss';
@@ -66,11 +66,12 @@ class EventGenerator extends Component {
         </ReactCSSTransitionGroup>
 
         <Button onClick={this.props.toggleForm}>Toggle</Button>
-
-        <h3>Itinerary Template</h3>
-        <ul className="skeleton" >
-          {this.props.params.skeleton.map((e, i) => <SkeletonItem delete={this.props.removeSkeletonItem(i)} e={e} /> )}
-        </ul>
+        <Table responsive className="skeleton">
+          <thead><th>Itinerary Template</th></thead>
+          <tbody>
+            {this.props.params.skeleton.map((e, i) => <SkeletonItem delete={this.props.removeSkeletonItem(i)} e={e} /> )}
+          </tbody>
+        </Table>
     </div>
     );
   }

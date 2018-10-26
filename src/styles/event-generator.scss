@@ -36,9 +36,15 @@
   .skeleton {
     list-style: none;
     padding: 0;
+    text-align: center;
 
-    li {
-      margin: 2%;
+    td {
+      text-align: center;
+      margin: auto;
+    }
+    th {
+      text-align: center;
+      margin: auto;
     }
   }
 }

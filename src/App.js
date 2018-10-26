@@ -5,7 +5,6 @@ import './styles/App.scss';
 import TopNavbar from './Top-navbar';
 import MainContainer from './Main-container';
 import axios from 'axios';
-import LoadingBalls from './LoadingBalls'
 
 class App extends Component {
   constructor(props) {
