@@ -9,6 +9,7 @@ class MainContainer extends Component {
     <div className="main-container">
       <EventContainer
         itinerary={this.props.itinerary}
+        userGivenLocation={this.props.userGivenLocation}
       />
       <EventGenerator
         params={this.props.params}
@@ -18,6 +19,8 @@ class MainContainer extends Component {
         generateItinerary={this.props.generateItinerary}
         startTime={this.props.startTime}
         endTime={this.props.endTime}
+        removeSkeletonItem={this.props.removeSkeletonItem}
+        userInputedLocation={this.props.userInputedLocation}
       />
     </div>);
   }

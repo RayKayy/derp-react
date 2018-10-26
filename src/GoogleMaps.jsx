@@ -5,27 +5,28 @@ class Map extends Component {
 
   loadMap = () => {
     let mapOption = {
-      center: { lat: 43.6529, lng: -79.3849 }, // toronto
-      zoom: 15,
+      center: { lat: this.props.userGivenLocation.lat, lng: this.props.userGivenLocation.lng }, // toronto
+      zoom: 13,
       mapTypeControl: false,
       draggableCursor: 'default'
     }
-    new window.google.maps.Map(document.getElementById('map'), mapOption);
+    const map = new window.google.maps.Map(document.getElementById('map'), mapOption);
+    this.onMapLoad(map, this.props.itinerary)
+  }
+
+  onMapLoad = (map, itinerary) => {
+    itinerary.forEach(element => {
+      new window.google.maps.Marker({
+        position: element.route_coords,
+        map: map,
+        title: 'Item Locations'
+      })
+    });
   }
 
   componentDidMount() {
-    if (!window.google) {
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.src = 'https://maps.google.com/maps/api/js?key=AIzaSyCZGbqxiI2Xpm1Hkq1b0775CsZENcvaklU';
-      var x = document.getElementsByTagName('script')[0];
-      x.parentNode.insertBefore(s, x);
-      s.addEventListener('load', () => {
-        this.loadMap();
-      })
-    } else {
       this.loadMap()
-    }
+
   }
 
   render() {

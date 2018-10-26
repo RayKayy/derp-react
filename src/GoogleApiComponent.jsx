@@ -26,7 +26,7 @@ class GoogleApiComponent extends Component {
     return (
       <ButtonToolbar>
         <Button bsStyle="primary" onClick={this.handleShow}>
-          Launch demo modal
+          View Locations On Map
         </Button>
 
         <Modal
@@ -41,7 +41,7 @@ class GoogleApiComponent extends Component {
             </Modal.Title>
           </Modal.Header>
             <h4>Wrapped Text</h4>
-            <Map />
+          <Map userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} />
             {/* <Map
               google={window.google}
               zoom={14}
