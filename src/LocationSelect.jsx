@@ -15,6 +15,7 @@ class LocationSelect extends React.Component {
   };
 
   handleSelect = address => {
+    this.setState({ address });
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => console.log('Success', latLng))
@@ -32,7 +33,7 @@ class LocationSelect extends React.Component {
           <div>
             <input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Enter Your Address..',
                 className: 'location-search-input',
               })}
             />
@@ -44,7 +45,7 @@ class LocationSelect extends React.Component {
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                  ? { border: '1px solid black', backgroundColor: '#fafafa', cursor: 'pointer' }
                   : { backgroundColor: '#ffffff', cursor: 'pointer' };
                 return (
                   <div

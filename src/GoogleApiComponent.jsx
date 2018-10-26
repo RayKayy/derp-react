@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ButtonToolbar, Button, Modal } from 'react-bootstrap';
-import { Map, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
+import { ButtonToolbar, Button, Modal} from 'react-bootstrap';
+import Map from './GoogleMaps';
+// import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
 import './styles/googleApiComponent.scss';
 
 class GoogleApiComponent extends Component {
@@ -22,10 +23,6 @@ class GoogleApiComponent extends Component {
   }
 
   render() {
-    const style = {
-      width: '100%',
-      height: '300%'
-    }
     return (
       <ButtonToolbar>
         <Button bsStyle="primary" onClick={this.handleShow}>
@@ -44,7 +41,8 @@ class GoogleApiComponent extends Component {
             </Modal.Title>
           </Modal.Header>
             <h4>Wrapped Text</h4>
-            <Map
+            <Map />
+            {/* <Map
               google={window.google}
               zoom={14}
               style={style}
@@ -53,13 +51,23 @@ class GoogleApiComponent extends Component {
                 lat: 43.653908,
                 lng: -79.384293
               }}>
+            <DirectionsRenderer
+              options={{ draggable: true }}
+              ref={(r) => directionsRef = r}
+              onDirectionsChanged={getDirections}
+              directions={mapRoute.route} />
+
+            <Marker
+              title={'The marker`s title will appear as a tooltip.'}
+              name={'SOMA'}
+              position={{ lat: 37.778519, lng: -122.405640 }} />
 
               <InfoWindow onClose={this.onInfoWindowClose}>
                 <div>
                   <h1>hi</h1>
                 </div>
               </InfoWindow>
-            </Map>
+            </Map> */}
           <Modal.Footer>
             <Button onClick={this.handleHide}>Close</Button>
           </Modal.Footer>
@@ -69,7 +77,8 @@ class GoogleApiComponent extends Component {
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: (process.env.REACT_APP_GOOGLE_KEY),
-  libraries: ['places']
-})(GoogleApiComponent)
+export default GoogleApiComponent;
+// ({
+//   apiKey: (process.env.REACT_APP_GOOGLE_KEY),
+//   libraries: ['places', 'geometry', 'drawing']
+// })(GoogleApiComponent)
