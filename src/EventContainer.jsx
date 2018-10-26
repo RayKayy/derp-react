@@ -9,7 +9,7 @@ class EventContainer extends Component {
       return (
         <div className="event-container">
           {this.props.itinerary.map((event) => <Item event={event} />)}
-          <GoogleApiComponent />
+          <GoogleApiComponent userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} />
         </div>
       );
     } else {
