@@ -18,6 +18,8 @@ class MainContainer extends Component {
         generateItinerary={this.props.generateItinerary}
         startTime={this.props.startTime}
         endTime={this.props.endTime}
+        showForm={this.props.showForm}
+        toggleForm={this.props.toggleForm}
       />
     </div>);
   }

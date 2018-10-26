@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './styles/event-generator.scss';
 import './styles/react-datetime.scss';
 import Datetime from 'react-datetime';
@@ -9,7 +10,8 @@ class EventGenerator extends Component {
   constructor(props){
     super(props)
     this.state = {
-      type: 'Restaurant'
+      type: 'Restaurant',
+      showForm: true,
     }
   }
 
@@ -26,17 +28,10 @@ class EventGenerator extends Component {
   }
 
   _handleEndTime = (time) => {
-    console.log(time._d);
-
-    // const hour = time._d.getHours();
-    // let minutes = '';
-    // if (time._d.getMinutes() < 10) {
-    //   minutes = `0${time._d.getMinutes()}`
-    // } else if (time._d.getMinutes() >= 10) {
-    //   minutes = time._d.getMinutes()
-    // }
     this.props.handleEndTime(time._d);
   }
+
+
 
   render() {
     return (
@@ -45,21 +40,33 @@ class EventGenerator extends Component {
         <Button onClick={this.props.generateItinerary} className="derp" bsStyle="success" bsSize="large">
           DERP
         </Button>
-        <h2>Add events to your Itinerary</h2>
-        <FormGroup controlId="formControlsSelect">
-          <LocationSelect />
-          <h5>Select start time</h5>
-          <Datetime onChange={this._handleDate} defaultValue={this.props.startTime} />
-          <h5>Select end time</h5>
-          <Datetime onChange={this._handleEndTime} defaultValue={this.props.endTime} />
-          <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
-          <FormControl onChange={this._handleChange} value={this.state.type} componentClass="select" placeholder="select">
-            <option value="Restaurant">Restaurant</option>
-            <option value="Movie">Movie</option>
-          </FormControl>
-        </FormGroup>
+        {this.props.params.skeleton.length === 0 && <h2>Add events to your Itinerary</h2>}
+        <ReactCSSTransitionGroup
+          transitionName="form"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnter={true}
+          transitionLeave={true}>
 
-        <Button onClick={this._addSkeleton} >Add</Button>
+          {this.props.showForm && (
+          <FormGroup controlId="formControlsSelect">
+            <LocationSelect />
+            <h5>Select start time</h5>
+            <Datetime onChange={this._handleDate} defaultValue={this.props.startTime} />
+            <h5>Select end time</h5>
+            <Datetime onChange={this._handleEndTime} defaultValue={this.props.endTime} />
+            <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
+            <FormControl onChange={this._handleChange} value={this.state.type} componentClass="select" placeholder="select">
+              <option value="Restaurant">Restaurant</option>
+              <option value="Movie">Movie</option>
+            </FormControl>
+            <Button onClick={this._addSkeleton} >Add</Button>
+          </FormGroup>
+          )}
+
+        </ReactCSSTransitionGroup>
+
+        <Button onClick={this.props.toggleForm}>Toggle</Button>
 
         <h3>Itinerary</h3>
         <ul className="skeleton" >
