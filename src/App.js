@@ -5,7 +5,6 @@ import './styles/App.scss';
 import TopNavbar from './Top-navbar';
 import MainContainer from './Main-container';
 import axios from 'axios';
-import GoogleApiComponent from './GoogleApiComponent';
 
 class App extends Component {
   constructor(props) {
@@ -97,8 +96,8 @@ class App extends Component {
           itinerary={this.state.events}
           removeSkeletonItem={this._removeSkeletonItem}
           userInputedLocation={this._userInputedLocation}
+          userGivenLocation={this.state.params.coords}
         />
-        < GoogleApiComponent/>
       </div>
     );
   }
