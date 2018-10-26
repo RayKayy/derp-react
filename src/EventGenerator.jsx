@@ -12,7 +12,6 @@ class EventGenerator extends Component {
     super(props)
     this.state = {
       type: 'Restaurant',
-      showForm: true,
     }
   }
 
@@ -20,8 +19,8 @@ class EventGenerator extends Component {
     this.setState({ type: e.target.value });
   }
 
-  _addSkeleton = () => {
-    this.props.addSkeleton(this.state.type);
+  _addSkeleton = type => () => {
+    this.props.addSkeleton(type);
   }
 
   _handleDate = (date) => {
@@ -37,11 +36,11 @@ class EventGenerator extends Component {
   render() {
     return (
       <div className="event-generator">
-        <h1>Welcome User! Plan you day with just a click of a button!!!</h1>
         <Button onClick={this.props.generateItinerary} className="derp" bsStyle="success" bsSize="large">
           DERP
         </Button>
-        {this.props.params.skeleton.length === 0 && <h2>Add events to your Itinerary</h2>}
+        <h2>Add events to your Itinerary</h2>
+        {/* {this.props.params.skeleton.length === 0 && <h2>Add events to your Itinerary</h2>} */}
         <ReactCSSTransitionGroup
           transitionName="form"
           transitionAppear={true}
@@ -57,11 +56,9 @@ class EventGenerator extends Component {
             <h5>Select end time</h5>
             <Datetime onChange={this._handleEndTime} defaultValue={this.props.endTime} />
             <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
-            <FormControl onChange={this._handleChange} value={this.state.type} componentClass="select" placeholder="select">
-              <option value="Restaurant">Restaurant</option>
-              <option value="Movie">Movie</option>
-            </FormControl>
-            <Button onClick={this._addSkeleton} >Add</Button>
+            <br />
+            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Restaurant')} ><i class="fas fa-utensils"></i> Restaurant <i class="fas fa-plus"></i></Button>
+            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Movie')} ><i class="fas fa-film"></i> Movie <i class="fas fa-plus"></i></Button>
           </FormGroup>
           )}
 

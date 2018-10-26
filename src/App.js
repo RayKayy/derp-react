@@ -11,6 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showWelcome: true,
       showForm: true,
       location: {},
       events: [],
@@ -41,6 +42,7 @@ class App extends Component {
         console.log(res.data);
         this.setState({events: res.data.itinerary});
         this.setState({route: res.data.route});
+        this.setState({showWelcome: false})
       })
   }
 
@@ -87,6 +89,7 @@ class App extends Component {
     return (
       <div className="App">
         <TopNavbar />
+        {this.state.showWelcome && <h1>Welcome User! Plan you day with just a click of a button!!!</h1>}
         <MainContainer
           params={this.state.params}
           addSkeleton={this._addSkeleton}

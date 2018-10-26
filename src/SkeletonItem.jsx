@@ -5,7 +5,7 @@ class SkeletonItem extends Component {
   render() {
     return (
       <div>
-        <li>{this.props.e} <Button bsStyle="danger" onClick={this.props.delete}>Delete </Button> </li>
+        <li>{this.props.e} <Button bsStyle="danger" onClick={this.props.delete}><i class="fas fa-trash-alt"></i></Button> </li>
       </div>
     );
   }
