@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import randomColor from 'randomcolor'
 
 
 class Map extends Component {
@@ -10,11 +11,27 @@ class Map extends Component {
       mapTypeControl: false,
       draggableCursor: 'default'
     }
-    const directionsDisplay = new window.google.maps.DirectionsRenderer();
+    console.log(this.props.route.routes);
+
+    const journey = []
+
+    const { legs } = this.props.route.routes[0]
+    legs.forEach(x => {
+      const path = []
+      x.steps.forEach(step => {
+        path.push(step.start_location)
+        path.push(step.end_location)
+      })
+      const polyline = new window.google.maps.Polyline({
+        strokeColor: randomColor(),
+        strokeWeight: 4,
+        path,
+      });
+      journey.push(polyline)
+    })
     const map = new window.google.maps.Map(document.getElementById('map'), mapOption);
-    directionsDisplay.setMap(map)
     this.onMapLoad(map, this.props.itinerary)
-    directionsDisplay.setDirections(this.props.route)
+    journey.forEach(line => line.setMap(map))
   }
 
   onMapLoad = (map, itinerary) => {
