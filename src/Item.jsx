@@ -5,7 +5,6 @@ import './styles/item.scss';
 class Item extends Component {
   render() {
     console.log(this.props.event.type);
-
       if (this.props.event.type === "restaurant") {
         return (
           <div className="restaurant-container">
