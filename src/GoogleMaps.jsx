@@ -10,8 +10,11 @@ class Map extends Component {
       mapTypeControl: false,
       draggableCursor: 'default'
     }
+    const directionsDisplay = new window.google.maps.DirectionsRenderer();
     const map = new window.google.maps.Map(document.getElementById('map'), mapOption);
+    directionsDisplay.setMap(map)
     this.onMapLoad(map, this.props.itinerary)
+    directionsDisplay.setDirections(this.props.route)
   }
 
   onMapLoad = (map, itinerary) => {

@@ -40,7 +40,7 @@ class App extends Component {
         //this.setState({ itinerary: res.itinerary })
         console.log(res.data);
         this.setState({events: res.data.itinerary});
-        this.setState({route: res.data.route});
+        this.setState({route: res.data.google_directions});
         this.setState({showWelcome: false})
       })
   }
@@ -103,6 +103,7 @@ class App extends Component {
           removeSkeletonItem={this._removeSkeletonItem}
           userInputedLocation={this._userInputedLocation}
           userGivenLocation={this.state.params.coords}
+          route={this.state.route}
         />
       </div>
     );

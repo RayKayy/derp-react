@@ -41,7 +41,7 @@ class GoogleApiComponent extends Component {
             </Modal.Title>
           </Modal.Header>
             <h4>Wrapped Text</h4>
-          <Map userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} />
+          <Map userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} route={this.props.route} />
             {/* <Map
               google={window.google}
               zoom={14}
