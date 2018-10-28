@@ -71,13 +71,13 @@ class Map extends Component {
         title: 'Item Locations'
       })
       if (element.type === "restaurant") {
-      marker.addListener('click', function () {
-        infowindow.open(map, marker);
-      });
+        marker.addListener('click', function () {
+          infowindow.open(map, marker);
+        });
       } else if (element.type === "movie") {
-      marker.addListener('click', function () {
-        infowindow2.open(map, marker);
-      });
+        marker.addListener('click', function () {
+          infowindow2.open(map, marker);
+        });
     }
 
     });
