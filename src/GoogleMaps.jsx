@@ -35,12 +35,51 @@ class Map extends Component {
   }
 
   onMapLoad = (map, itinerary) => {
+
     itinerary.forEach(element => {
-      new window.google.maps.Marker({
+      let infowindow;
+      let infowindow2;
+      if (element.type === "restaurant") {
+        infowindow = new window.google.maps.InfoWindow({
+          content: `<div>
+          <div>
+          </div>
+          <h1>${element.name}</h1>
+          <div>
+          <p><strong>Address:</strong> ${element.location.display_address.join(" ")}</p>
+          <p><strong>Phone Number:</strong> ${element.display_phone}</p>
+          </div>
+          </div>`
+        });
+      } else if (element.type === "movie") {
+        infowindow2 = new window.google.maps.InfoWindow({
+          content: `<div>
+          <div>
+          </div>
+          <h1>${element.cinema.name}</h1>
+          <div>
+          <p><strong>Address:</strong> ${element.cinema.location.address.display_text}</p>
+          <p><strong>Phone Number:</strong> ${element.cinema.telephone}</p>
+          </div>
+          </div>`
+        });
+      }
+
+      const marker = new window.google.maps.Marker({
         position: element.route_coords,
         map: map,
         title: 'Item Locations'
       })
+      if (element.type === "restaurant") {
+        marker.addListener('click', function () {
+          infowindow.open(map, marker);
+        });
+      } else if (element.type === "movie") {
+        marker.addListener('click', function () {
+          infowindow2.open(map, marker);
+        });
+    }
+
     });
   }
 
