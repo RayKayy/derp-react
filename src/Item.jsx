@@ -20,6 +20,7 @@ class Item extends Component {
                     <strong>Address: </strong>{this.props.event.location.display_address.join(" ")}
                   </p>
                   <p><strong>Phone Number: </strong>{this.props.event.display_phone}</p>
+                  <a rel="noopener noreferrer" target="_blank" href={this.props.event.url}><button>YELP LINK</button></a>
                 </Media.Body>
               </Media>
             </a>
