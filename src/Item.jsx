@@ -15,9 +15,11 @@ class Item extends Component {
                 </Media.Left>
                 <Media.Body>
                   <Media.Heading>{this.props.event.name}</Media.Heading>
+                  <p><strong>Alias: </strong>{this.props.event.categories[0].title}</p>
                   <p className="text-justify">
-                    {this.props.event.location.display_address.join(" ")}
+                    <strong>Address: </strong>{this.props.event.location.display_address.join(" ")}
                   </p>
+                  <p><strong>Phone Number: </strong>{this.props.event.display_phone}</p>
                 </Media.Body>
               </Media>
             </a>
@@ -34,9 +36,13 @@ class Item extends Component {
                 </Media.Left>
                 <Media.Body>
                   <Media.Heading>{this.props.event.title}</Media.Heading>
+                  <h5>{this.props.event.cinema.name}</h5>
                   <p className="text-justify">
-                    {this.props.event.cinema.location.address.display_text}
+                    <strong>Address: </strong>{this.props.event.cinema.location.address.display_text}
                   </p>
+                  <p><strong>Synopsis: </strong>{this.props.event.synopsis}</p>
+                  <p><strong>Runetime: </strong>{this.props.event.runtime} Minutes</p>
+                  <p><strong>Showtime: </strong>{new Date(this.props.event.start_at).toString().slice(0, -33)}</p>
                 </Media.Body>
               </Media>
             </a>
