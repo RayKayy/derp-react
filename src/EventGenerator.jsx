@@ -51,7 +51,7 @@ class EventGenerator extends Component {
 
           {this.props.showForm && (
           <FormGroup controlId="formControlsSelect">
-            <LocationSelect />
+            <LocationSelect userInputedLocation={this.props.userInputedLocation}/>
             <h5>Select start time</h5>
             <Datetime onChange={this._handleDate} defaultValue={this.props.startTime} />
             <h5>Select end time</h5>
