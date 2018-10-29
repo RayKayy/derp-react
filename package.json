@@ -16,9 +16,11 @@
     "react-datetime": "^2.16.2",
     "react-dom": "^16.5.2",
     "react-geolocation": "^1.0.4",
+    "react-icons": "^3.2.2",
     "react-loading": "^2.0.3",
     "react-places-autocomplete": "^7.2.0",
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "react-vertical-timeline-component": "^2.3.1"
   },
   "scripts": {
     "start": "react-scripts start",

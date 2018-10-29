@@ -14,11 +14,11 @@
 .event-img {
   max-height: 10em;
   width: 12em;
-  margin-right: 3vw;
+  margin: auto;
 }
 
 .event-item {
-  width: 90%;
+  width: 100%;
   margin-bottom: 0;
   .yelp-logo {
     max-height: 3em;
@@ -26,10 +26,9 @@
 }
 
 .travel-time {
-  margin: .5em 0 .5em 0;
-  width: 30%;
   .panel-heading {
-    padding: 0;
+    padding: .5em;
+    height: 100%;
   }
 }
 
@@ -46,4 +45,10 @@
     margin: 0;
     max-width: 25em;
   }
+}
+
+
+.vertical-timeline-element-content {
+  padding: 0;
+  box-shadow: 0 0 0 black;
 }

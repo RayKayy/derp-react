@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-// eslint-disable-next-line
-import logo from './logo.svg';
 import './styles/App.scss';
+import 'react-vertical-timeline-component/style.min.css';
 import TopNavbar from './TopNavbar';
 import MainContainer from './Main-container';
 import axios from 'axios';
@@ -47,8 +46,6 @@ class App extends Component {
   }
 
   _checkLogin = () => {
-    console.log('hi');
-
     axios.get('/loggedin')
     .then(res => {
       this.setState({ userinfo: res.data })
@@ -84,7 +81,7 @@ class App extends Component {
   }
 
   _handleEndTime = (date) => {
-    this.setState({ params: {...this.state.params, endTime: date}}, () => {console.log(this.state.params);});
+    this.setState({ params: {...this.state.params, endTime: date}});
   }
 
   _toggleForm = () => {
@@ -92,7 +89,6 @@ class App extends Component {
   }
 
   _removeSkeletonItem = (i) => () => {
-    console.log(i);
     let newSkele = this.state.params.skeleton
     newSkele.splice(i, 1);
     this.setState({

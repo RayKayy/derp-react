@@ -11,8 +11,6 @@ class Map extends Component {
       mapTypeControl: false,
       draggableCursor: 'default'
     }
-    console.log(this.props.route.routes);
-
     const journey = []
 
     const { legs } = this.props.route.routes[0]
