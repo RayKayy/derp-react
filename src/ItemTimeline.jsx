@@ -48,7 +48,7 @@ const ItemTimeline = (props) => {
         </Fragment>
       )
     case 'movie':
-      const posterUrl = props.event.posters ? props.event.posters.image_files[0].url : ""
+      const posterUrl = props.event.posters ? props.event.posters.image_files[3].url : ""
       return (
         <Fragment>
           <VerticalTimelineElement
