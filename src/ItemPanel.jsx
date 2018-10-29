@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Panel, Image, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
+import './styles/item.scss';
 
 const ItemPanel = (props) => {
   switch (props.event.type) {
