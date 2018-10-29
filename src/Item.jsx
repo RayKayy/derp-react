@@ -42,7 +42,7 @@ class Item extends Component {
                     <strong>Address: </strong>{this.props.event.cinema.location.address.display_text}
                   </p>
                   <p><strong>Synopsis: </strong>{this.props.event.synopsis}</p>
-                  <p><strong>Runetime: </strong>{this.props.event.runtime} Minutes</p>
+                  <p><strong>Runtime: </strong>{this.props.event.runtime} Minutes</p>
                   <p><strong>Showtime: </strong>{new Date(this.props.event.start_at).toString().slice(0, -33)}</p>
                 </Media.Body>
               </Media>
