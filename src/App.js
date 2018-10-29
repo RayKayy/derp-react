@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 // eslint-disable-next-line
 import logo from './logo.svg';
 import './styles/App.scss';
-import TopNavbar from './Top-navbar';
+import TopNavbar from './TopNavbar';
 import MainContainer from './Main-container';
 import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
+
     super(props);
     this.state = {
+      userinfo: {},
       derping: false,
       showWelcome: true,
       showForm: true,
@@ -25,13 +27,31 @@ class App extends Component {
   }
 
   componentDidMount() {
-      navigator.geolocation.getCurrentPosition((position)=>{
-        this.setState({params: {
-          ...this.state.params,
-          coords: {lng: position.coords.longitude, lat: position.coords.latitude}
-        }});
-      });
+    navigator.geolocation.getCurrentPosition((position)=>{
+      this.setState({params: {
+        ...this.state.params,
+        coords: {lng: position.coords.longitude, lat: position.coords.latitude}
+      }});
+    });
+
+    this._checkLogin();
       // this._getItinerary(this.state.params)
+  }
+
+  _handleLogout = () => {
+    axios.get('/logout')
+      .then((response) => {
+        this.setState({ userinfo: {} })
+      })
+  }
+
+  _checkLogin = () => {
+    console.log('hi');
+
+    axios.get('/loggedin')
+    .then(res => {
+      this.setState({ userinfo: res.data })
+    })
   }
 
   _generateItinerary = () => {
@@ -67,33 +87,33 @@ class App extends Component {
     this.setState({ showForm: !this.state.showForm })
   }
 
-    _removeSkeletonItem = (i) => () => {
-      console.log(i);
-      let newSkele = this.state.params.skeleton
-      newSkele.splice(i, 1);
-      this.setState({
-        params: { ...this.state.params,
-          skeleton: newSkele
-        }
-      });
-    }
+  _removeSkeletonItem = (i) => () => {
+    console.log(i);
+    let newSkele = this.state.params.skeleton
+    newSkele.splice(i, 1);
+    this.setState({
+      params: { ...this.state.params,
+        skeleton: newSkele
+      }
+    });
+  }
 
-    _userInputedLocation = (latLng) => {
-      this.setState({
-        params: {
-          ...this.state.params,
-          coords: {
-            lng: latLng.lng,
-            lat: latLng.lat
-          }
+  _userInputedLocation = (latLng) => {
+    this.setState({
+      params: {
+        ...this.state.params,
+        coords: {
+          lng: latLng.lng,
+          lat: latLng.lat
         }
-      });
-    }
+      }
+    });
+  }
 
   render() {
     return (
       <div className="App">
-        <TopNavbar />
+        <TopNavbar userinfo={this.state.userinfo} logout={this._handleLogout} checkLogin={this._checkLogin} />
         {this.state.showWelcome && <h1>Welcome User! Plan you day with just a click of a button!!!</h1>}
         <MainContainer
           params={this.state.params}

@@ -35,10 +35,12 @@ class UserSignUp extends Component {
           password: '',
           password_confirmation: ''
         });
+        this.props.checkLogin();
       })
       .catch((error) => {
         console.log(error);
       });
+
   }
 
   handleFormChange = (key) => (e) => {
