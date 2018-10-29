@@ -42,7 +42,8 @@ class UserLogin extends Component {
             email: '',
             password: ''
           });
-      }
+        }
+        this.props.checkLogin();
       })
       .catch((error) => {
         console.log(error);
@@ -53,6 +54,7 @@ class UserLogin extends Component {
           password: ''
         });
       });
+
   }
 
   handleFormChange = (key) => (e) => {

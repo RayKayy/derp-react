@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel } from 'react-bootstrap';
+import { Button, FormGroup, ControlLabel, Table } from 'react-bootstrap';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './styles/event-generator.scss';
 import './styles/react-datetime.scss';
@@ -37,9 +37,6 @@ class EventGenerator extends Component {
   render() {
     return (
       <div className="event-generator">
-        <Button onClick={this.props.generateItinerary} className="derp" bsStyle="success" bsSize="large">
-          {this.props.derping ? <LoadingBalls /> : 'DERP'}
-        </Button>
         <h2>Add events to your Itinerary</h2>
         {/* {this.props.params.skeleton.length === 0 && <h2>Add events to your Itinerary</h2>} */}
         <ReactCSSTransitionGroup
@@ -58,19 +55,20 @@ class EventGenerator extends Component {
             <Datetime onChange={this._handleEndTime} defaultValue={this.props.endTime} />
             <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
             <br />
-            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Restaurant')} ><i class="fas fa-utensils"></i> Restaurant <i class="fas fa-plus"></i></Button>
-            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Movie')} ><i class="fas fa-film"></i> Movie <i class="fas fa-plus"></i></Button>
+            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Restaurant')} ><i className="fas fa-utensils"></i> Restaurant <i className="fas fa-plus"></i></Button>
+            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Movie')} ><i className="fas fa-film"></i> Movie <i className="fas fa-plus"></i></Button>
           </FormGroup>
           )}
 
         </ReactCSSTransitionGroup>
 
         <Button onClick={this.props.toggleForm}>Toggle</Button>
-
-        <h3>Itinerary Template</h3>
-        <ul className="skeleton" >
-          {this.props.params.skeleton.map((e, i) => <SkeletonItem delete={this.props.removeSkeletonItem(i)} e={e} /> )}
-        </ul>
+        <Table responsive className="skeleton">
+          <thead><th>Itinerary Template</th></thead>
+          <tbody>
+            {this.props.params.skeleton.map((e, i) => <SkeletonItem key={`skeleton${i}`} delete={this.props.removeSkeletonItem(i)} e={e} /> )}
+          </tbody>
+        </Table>
     </div>
     );
   }
