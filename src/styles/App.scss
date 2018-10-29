@@ -1,15 +1,15 @@
 body {
   height: 100%;
   margin: 0;
-  font: 400 15px/1.8 "Lato",
-  sans-serif;
-  color: #777;
+  font-family: 'Fredoka One',
+  cursive;
 }
 
 .bgimg {
   background-image: url("../derp-background.jpg");
   height: 100%;
-  position: relative;
+  width: 100%;
+  position: absolute;
   opacity: 1;
   background-position: center;
   background-repeat: no-repeat;
@@ -19,6 +19,7 @@ body {
 
 .App {
   text-align: center;
+  color: white;
 }
 
 .App-logo {
