@@ -2,91 +2,123 @@ import React, { Component } from 'react';
 // eslint-disable-next-line
 import logo from './logo.svg';
 import './styles/App.scss';
-import TopNavbar from './Top-navbar';
+import TopNavbar from './TopNavbar';
 import MainContainer from './Main-container';
 import axios from 'axios';
-import GoogleApiComponent from './GoogleApiComponent';
+import moment from 'moment';
 
 class App extends Component {
   constructor(props) {
+
     super(props);
     this.state = {
+      userinfo: {},
+      derping: false,
+      showWelcome: true,
+      showForm: true,
       location: {},
       events: [],
       filters: {},
       params: {
         skeleton: [],
         startTime: new Date(),
-        endTime: new Date()
+        endTime: moment(new Date()).add(1, 'd').toDate()
       }
     }
   }
+
   componentDidMount() {
-      navigator.geolocation.getCurrentPosition((position)=>{
-        this.setState({params: {
-          ...this.state.params,
-          coords: {lng: position.coords.longitude, lat: position.coords.latitude}
-        }});
-      });
+    navigator.geolocation.getCurrentPosition((position)=>{
+      this.setState({params: {
+        ...this.state.params,
+        coords: {lng: position.coords.longitude, lat: position.coords.latitude}
+      }});
+    });
+
+    this._checkLogin();
       // this._getItinerary(this.state.params)
-    }
+  }
 
-    // componentWillMount() {
-    //   const GOOGLE_KEY = process.env.REACT_APP_GOOGLE_KEY;
-    //   const script = document.createElement('script');
-    //   script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_KEY}&libraries=places"`;
-    //   document.head.append(script);
-    // }
+  _handleLogout = () => {
+    axios.get('/logout')
+      .then((response) => {
+        this.setState({ userinfo: {} })
+      })
+  }
 
-    _generateItinerary = () => {
-      axios.post('/itineraries', { ...this.state.params })
-        .then((res) => {
-          //this.setState({ itinerary: res.itinerary })
-          console.log(res.data);
-          this.setState({events: res.data.itinerary});
-          this.setState({route: res.data.route});
-        })
-    }
+  _checkLogin = () => {
+    console.log('hi');
 
-    _addSkeleton = (type) => {
-      this.setState({ params: {...this.state.params, skeleton: [...this.state.params.skeleton, type] }});
-    }
+    axios.get('/loggedin')
+    .then(res => {
+      this.setState({ userinfo: res.data })
+    })
+  }
 
-    _handleDate = (date) => {
-      this.setState({ params: {...this.state.params, startTime: date}});
-    }
+  _generateItinerary = () => {
+    this.setState({
+      showForm: false,
+      derping: true,
+    })
+    axios.post('/itineraries', { ...this.state.params })
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          events: res.data.itinerary,
+          route: res.data.google_directions,
+          showWelcome: false,
+          derping: false,
+        });
+      })
+      .catch(err => {
+        this.setState({ derping: false })
+      })
+  }
 
-    _handleEndTime = (date) => {
-      this.setState({ params: {...this.state.params, endTime: date}}, () => {console.log(this.state.params);});
-    }
+  _addSkeleton = (type) => {
+    this.setState({ params: {...this.state.params, skeleton: [...this.state.params.skeleton, type] }});
+  }
 
-    _removeSkeletonItem = (i) => () => {
-      console.log(i);
-      let newSkele = this.state.params.skeleton
-      newSkele.splice(i, 1);
-      this.setState({
-        params: { ...this.state.params,
-          skeleton: newSkele
+  _handleDate = (date) => {
+    this.setState({ params: {...this.state.params, startTime: date}});
+  }
+
+  _handleEndTime = (date) => {
+    this.setState({ params: {...this.state.params, endTime: date}}, () => {console.log(this.state.params);});
+  }
+
+  _toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm })
+  }
+
+  _removeSkeletonItem = (i) => () => {
+    console.log(i);
+    let newSkele = this.state.params.skeleton
+    newSkele.splice(i, 1);
+    this.setState({
+      params: { ...this.state.params,
+        skeleton: newSkele
+      }
+    });
+  }
+
+  _userInputedLocation = (latLng) => {
+    this.setState({
+      params: {
+        ...this.state.params,
+        coords: {
+          lng: latLng.lng,
+          lat: latLng.lat
         }
-      });
-    }
-
-    _userInputedLocation = (latLng) => {
-      this.setState({
-        params: {
-          ...this.state.params,
-          coords: {
-            lng: latLng.lng,
-            lat: latLng.lat
-          }
-        }
-      });
-    }
+      }
+    });
+  }
 
   render() {
     return (
       <div className="App">
-        <TopNavbar />
+        <TopNavbar userinfo={this.state.userinfo} logout={this._handleLogout} checkLogin={this._checkLogin} />
+        {this.state.showWelcome && <h1>Welcome User! Plan you day with just a click of a button!!!</h1>}
         <MainContainer
           params={this.state.params}
           addSkeleton={this._addSkeleton}
@@ -96,10 +128,14 @@ class App extends Component {
           startTime={this.state.startTime}
           endTime={this.state.endTime}
           itinerary={this.state.events}
+          showForm={this.state.showForm}
+          toggleForm={this._toggleForm}
           removeSkeletonItem={this._removeSkeletonItem}
           userInputedLocation={this._userInputedLocation}
+          userGivenLocation={this.state.params.coords}
+          route={this.state.route}
+          derping={this.state.derping}
         />
-        < GoogleApiComponent/>
       </div>
     );
   }

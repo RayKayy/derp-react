@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { Button, FormGroup, ControlLabel, Table } from 'react-bootstrap';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './styles/event-generator.scss';
 import './styles/react-datetime.scss';
 import Datetime from 'react-datetime';
 import LocationSelect from './LocationSelect';
 import SkeletonItem from './SkeletonItem';
+import LoadingBalls from './LoadingBalls'
 
 class EventGenerator extends Component {
   constructor(props){
     super(props)
     this.state = {
-      type: 'Restaurant'
+      type: 'Restaurant',
     }
   }
 
@@ -18,8 +20,8 @@ class EventGenerator extends Component {
     this.setState({ type: e.target.value });
   }
 
-  _addSkeleton = () => {
-    this.props.addSkeleton(this.state.type);
+  _addSkeleton = type => () => {
+    this.props.addSkeleton(type);
   }
 
   _handleDate = (date) => {
@@ -27,45 +29,46 @@ class EventGenerator extends Component {
   }
 
   _handleEndTime = (time) => {
-    console.log(time._d);
-
-    // const hour = time._d.getHours();
-    // let minutes = '';
-    // if (time._d.getMinutes() < 10) {
-    //   minutes = `0${time._d.getMinutes()}`
-    // } else if (time._d.getMinutes() >= 10) {
-    //   minutes = time._d.getMinutes()
-    // }
     this.props.handleEndTime(time._d);
   }
+
+
 
   render() {
     return (
       <div className="event-generator">
-        <h1>Welcome User! Plan you day with just a click of a button!!!</h1>
-        <Button onClick={this.props.generateItinerary} className="derp" bsStyle="success" bsSize="large">
-          DERP
-        </Button>
         <h2>Add events to your Itinerary</h2>
-        <FormGroup controlId="formControlsSelect">
-          <LocationSelect userInputedLocation={this.props.userInputedLocation}/>
-          <h5>Select start time</h5>
-          <Datetime onChange={this._handleDate} defaultValue={this.props.startTime} />
-          <h5>Select end time</h5>
-          <Datetime onChange={this._handleEndTime} defaultValue={this.props.endTime} />
-          <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
-          <FormControl onChange={this._handleChange} value={this.state.type} componentClass="select" placeholder="select">
-            <option value="Restaurant">Restaurant</option>
-            <option value="Movie">Movie</option>
-          </FormControl>
-        </FormGroup>
+        {/* {this.props.params.skeleton.length === 0 && <h2>Add events to your Itinerary</h2>} */}
+        <ReactCSSTransitionGroup
+          transitionName="form"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnter={true}
+          transitionLeave={true}>
 
-        <Button onClick={this._addSkeleton} >Add</Button>
+          {this.props.showForm && (
+          <FormGroup controlId="formControlsSelect">
+            <LocationSelect userInputedLocation={this.props.userInputedLocation} />
+            <h5>Select start time</h5>
+            <Datetime onChange={this._handleDate} defaultValue={this.props.startTime} />
+            <h5>Select end time</h5>
+            <Datetime onChange={this._handleEndTime} defaultValue={this.props.endTime} />
+            <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
+            <br />
+            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Restaurant')} ><i className="fas fa-utensils"></i> Restaurant <i className="fas fa-plus"></i></Button>
+            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Movie')} ><i className="fas fa-film"></i> Movie <i className="fas fa-plus"></i></Button>
+          </FormGroup>
+          )}
 
-        <h3>Itinerary Template</h3>
-        <ul className="skeleton" >
-          {this.props.params.skeleton.map((e, i) => <SkeletonItem delete={this.props.removeSkeletonItem(i)} e={e} /> )}
-        </ul>
+        </ReactCSSTransitionGroup>
+
+        <Button onClick={this.props.toggleForm}>Toggle</Button>
+        <Table responsive className="skeleton">
+          <thead><th>Itinerary Template</th></thead>
+          <tbody>
+            {this.props.params.skeleton.map((e, i) => <SkeletonItem key={`skeleton${i}`} delete={this.props.removeSkeletonItem(i)} e={e} /> )}
+          </tbody>
+        </Table>
     </div>
     );
   }

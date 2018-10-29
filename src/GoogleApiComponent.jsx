@@ -37,11 +37,10 @@ class GoogleApiComponent extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-lg">
-              Modal heading
+              Itinerary Route
             </Modal.Title>
           </Modal.Header>
-            <h4>Wrapped Text</h4>
-            <Map />
+          <Map userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} route={this.props.route} />
             {/* <Map
               google={window.google}
               zoom={14}

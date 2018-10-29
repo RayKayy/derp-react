@@ -1,16 +1,8 @@
 .event-generator {
-  // display: none;
+  // display: none
 
-  .derp {
-    // background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
-    animation:slidebg 8s linear infinite;
-    border: 1px solid black;
-    width:calc(20vw + 6px);
-    height:calc(8vw + 6px);
-    border-radius:5px;
-    text-transform:uppercase;
-    font-size:3vw;
-    font-weight:bold;
+  .add-skele {
+    margin: 0 .5em 0 .5em;
   }
 
   label {
@@ -30,33 +22,17 @@
   .skeleton {
     list-style: none;
     padding: 0;
+    text-align: center;
 
-    li {
-      margin: 2%;
+    td {
+      text-align: center;
+      margin: auto;
+    }
+    th {
+      text-align: center;
+      margin: auto;
     }
   }
-}
-
-@keyframes slidebg {
-  0% {
-    background: #FC4F4F;
-  }
-  25% {
-    background: orange;
-  }
-
-  50% {
-    background: lightblue;
-  }
-
-  75% {
-    background: purple;
-  }
-
-  100% {
-    background: #FC4F4F;
-  }
-
 }
 
 .rdtOpen .rdtPicker {
@@ -71,4 +47,35 @@
     right: 0;
     left: 0;
   }
+}
+
+.form-appear {
+  opacity: 0.01;
+}
+
+.form-appear.form-appear-active {
+  // opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.form-enter {
+  opacity: 0.01;
+  // max-height: 0;
+}
+
+.form-enter.form-enter-active {
+  opacity: 1;
+  // max-height: 100%;
+  transition: opacity 500ms ease-in;
+}
+
+.form-leave {
+  opacity: 1;
+  // max-height: 100%;
+}
+
+.form-leave.form-leave-active {
+  opacity: 0.01;
+  // max-height: 0;
+  transition: opacity 300ms ease-in;
 }
