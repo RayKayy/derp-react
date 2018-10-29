@@ -19,7 +19,7 @@ class TopNavbar extends Component {
           <Nav pullRight>
             {this.props.userinfo.name ? (
               <Fragment>
-                <Navbar.Text>Hello, {this.props.userinfo.name}</Navbar.Text>
+                <Navbar.Text>Welcome {this.props.userinfo.name}</Navbar.Text>
                 <NavItem onClick={this.props.logout} eventKey={1} >
                   Logout
                 </NavItem>
