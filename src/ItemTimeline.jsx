@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 import { Panel, Image, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
-import ItemPanel from './ItemPanel'
 import * as FontAwesome from 'react-icons/fa'
 
 const ItemTimeline = (props) => {
@@ -38,12 +37,11 @@ const ItemTimeline = (props) => {
           {props.travel && (
             <VerticalTimelineElement
               className="vertical-timeline-element--work travel-time event-item event-body"
-              icon={<FontAwesome.FaCar />}
               iconStyle={{ background: '#d6e9c6', color: '#fff' }}
             >
               <Panel className="event-item travel-time" bsStyle="success">
                 <Panel.Heading>
-                  <Panel.Title componentClass="h3">{props.travel.duration.text}</Panel.Title>
+                  <Panel.Title componentClass="h3">{props.travel.duration.text} <FontAwesome.FaCar /></Panel.Title>
                 </Panel.Heading>
               </Panel>
           </VerticalTimelineElement>)}
@@ -60,7 +58,7 @@ const ItemTimeline = (props) => {
           >
             <Panel className="event-item" bsStyle="info" defaultCollasped>
               <Panel.Heading>
-                <Panel.Title toggle componentClass="h3">{props.event.title} <i className="fas fa-film"></i></Panel.Title>
+                <Panel.Title toggle componentClass="h3">{props.event.title}</Panel.Title>
               </Panel.Heading>
               <Panel.Collapse>
                 <Panel.Body className="event-body">
@@ -82,12 +80,11 @@ const ItemTimeline = (props) => {
           {props.travel && (
             <VerticalTimelineElement
               className="vertical-timeline-element--work travel-time event-item event-body"
-              icon={<FontAwesome.FaCar />}
               iconStyle={{ background: '#d6e9c6', color: '#fff' }}
             >
               <Panel className="event-item travel-time" bsStyle="success">
                 <Panel.Heading>
-                  <Panel.Title componentClass="h3">{props.travel.duration.text}</Panel.Title>
+                  <Panel.Title componentClass="h3">{props.travel.duration.text} <FontAwesome.FaCar /></Panel.Title>
                 </Panel.Heading>
               </Panel>
             </VerticalTimelineElement>)}
@@ -95,9 +92,15 @@ const ItemTimeline = (props) => {
       )
     default:
       return (
-        <Panel className="event-item" bsStyle="warning">
-          <Panel.Heading><Panel.Title componentClass="h3">Could Not Find Specified Event In Timeframe</Panel.Title></Panel.Heading>
-        </Panel>
+        <VerticalTimelineElement
+          className="vertical-timeline-element--work timeline-item"
+          iconStyle={{ background: '#fcf8e3', color: '#fff' }}
+          icon={<FontAwesome.FaExclamation />}
+        >
+          <Panel className="event-item" bsStyle="warning">
+            <Panel.Heading><Panel.Title componentClass="h3">Could Not Find Specified Event In Timeframe</Panel.Title></Panel.Heading>
+          </Panel>
+        </VerticalTimelineElement>
       )
   }
 }

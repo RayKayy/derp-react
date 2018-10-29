@@ -30,6 +30,12 @@
     padding: .5em;
     height: 100%;
   }
+  .vertical-timeline-element-content {
+    background-color:  rgba(0, 0, 0, 0);
+  }
+  .vertical-timeline-element-icon {
+  display: none;
+  }
 }
 
 .event-body {
@@ -51,4 +57,9 @@
 .vertical-timeline-element-content {
   padding: 0;
   box-shadow: 0 0 0 black;
+  background-color:  rgba(0, 0, 0, 0);
+}
+
+.vertical-timeline-element-content::before {
+  border: 0;
 }

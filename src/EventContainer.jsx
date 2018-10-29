@@ -14,7 +14,7 @@ class EventContainer extends Component {
           <VerticalTimeline layout='one-column'>
             {this.props.itinerary.map((event, i) => <ItemTimeline key={`timeline${i}`} event={event} travel={route.routes[0].legs[i]} />)}
           </VerticalTimeline>
-          <GoogleApiComponent userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} route={this.props.route}/>
+          <GoogleApiComponent params={this.props.params} userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} route={this.props.route}/>
         </div>
       );
     } else {
