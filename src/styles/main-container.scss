@@ -9,6 +9,10 @@
   min-height: 1em;
   align-items: center;
   flex-direction: column;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  color: white;
 
   .loading {
     margin: auto;
