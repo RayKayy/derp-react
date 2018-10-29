@@ -14,7 +14,7 @@ class EventContainer extends Component {
       return (
         <div className="event-container">
           {this.props.itinerary.map((event, i) => <ItemPanel key={`event${i}`} event={event} travel={route.routes[0].legs[i]} />)}
-          <GoogleApiComponent userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} route={this.props.route}/>
+          <GoogleApiComponent params={this.props.params} userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} route={this.props.route}/>
         </div>
       );
     } else {

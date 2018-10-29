@@ -1,3 +1,22 @@
+body {
+  height: 100%;
+  margin: 0;
+  font: 400 15px/1.8 "Lato",
+  sans-serif;
+  color: #777;
+}
+
+.bgimg {
+  background-image: url("../derp-background.jpg");
+  height: 100%;
+  position: relative;
+  opacity: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: auto;
+}
+
 .App {
   text-align: center;
 }
