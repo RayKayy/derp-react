@@ -30,11 +30,24 @@ class Map extends Component {
       journey.push(polyline)
     })
     const map = new window.google.maps.Map(document.getElementById('map'), mapOption);
-    this.onMapLoad(map, this.props.itinerary)
+    this.onMapLoad(map, this.props.itinerary, this.props.params.coords)
     journey.forEach(line => line.setMap(map))
   }
 
-  onMapLoad = (map, itinerary) => {
+  onMapLoad = (map, itinerary, userCoords) => {
+
+    const userLocation = new window.google.maps.Marker({
+      clickable: false,
+      icon: new window.google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+        new window.google.maps.Size(22, 22),
+        new window.google.maps.Point(0, 18),
+        new window.google.maps.Point(11, 11)),
+      shadow: null,
+      zIndex: 999,
+      position: userCoords,
+      map: map,
+      title: 'User Location'
+    });
 
     itinerary.forEach(element => {
       let infowindow;

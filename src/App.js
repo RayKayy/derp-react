@@ -56,6 +56,7 @@ class App extends Component {
   }
 
   _generateItinerary = () => {
+    console.log(this.state.params);
     this.setState({
       showForm: false,
       derping: true,
