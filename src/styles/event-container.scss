@@ -19,8 +19,17 @@
 
 .event-item {
   width: 90%;
+  margin-bottom: 0;
   .yelp-logo {
     max-height: 3em;
+  }
+}
+
+.travel-time {
+  margin: .5em 0 .5em 0;
+  width: 30%;
+  .panel-heading {
+    padding: 0;
   }
 }
 

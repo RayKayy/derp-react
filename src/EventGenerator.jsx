@@ -55,8 +55,8 @@ class EventGenerator extends Component {
             <Datetime onChange={this._handleEndTime} defaultValue={this.props.endTime} />
             <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
             <br />
-            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Restaurant')} ><i class="fas fa-utensils"></i> Restaurant <i class="fas fa-plus"></i></Button>
-            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Movie')} ><i class="fas fa-film"></i> Movie <i class="fas fa-plus"></i></Button>
+            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Restaurant')} ><i className="fas fa-utensils"></i> Restaurant <i className="fas fa-plus"></i></Button>
+            <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Movie')} ><i className="fas fa-film"></i> Movie <i className="fas fa-plus"></i></Button>
           </FormGroup>
           )}
 

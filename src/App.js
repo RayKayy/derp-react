@@ -5,6 +5,7 @@ import './styles/App.scss';
 import TopNavbar from './TopNavbar';
 import MainContainer from './Main-container';
 import axios from 'axios';
+import moment from 'moment';
 
 class App extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class App extends Component {
       params: {
         skeleton: [],
         startTime: new Date(),
-        endTime: new Date()
+        endTime: moment(new Date()).add(1, 'd').toDate()
       }
     }
   }
@@ -68,6 +69,9 @@ class App extends Component {
           showWelcome: false,
           derping: false,
         });
+      })
+      .catch(err => {
+        this.setState({ derping: false })
       })
   }
 
