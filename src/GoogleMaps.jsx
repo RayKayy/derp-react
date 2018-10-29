@@ -19,8 +19,8 @@ class Map extends Component {
     legs.forEach(x => {
       const path = []
       x.steps.forEach(step => {
-        path.push(step.start_location)
-        path.push(step.end_location)
+        let decodedPath = window.google.maps.geometry.encoding.decodePath(step.polyline.points)
+        decodedPath.forEach(pt => path.push(pt))
       })
       const polyline = new window.google.maps.Polyline({
         strokeColor: randomColor(),
