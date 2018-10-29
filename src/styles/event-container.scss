@@ -10,3 +10,31 @@
   align-items: center;
   flex-direction: column;
 }
+
+.event-img {
+  max-height: 10em;
+  width: 12em;
+  margin-right: 3vw;
+}
+
+.event-item {
+  width: 90%;
+  .yelp-logo {
+    max-height: 3em;
+  }
+}
+
+.event-body {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: left;
+  align-items: center;
+  .list-group-item {
+    border: 0;
+  }
+  .list-group {
+    margin: 0;
+    max-width: 25em;
+  }
+}

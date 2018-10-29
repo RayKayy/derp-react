@@ -37,9 +37,6 @@ class EventGenerator extends Component {
   render() {
     return (
       <div className="event-generator">
-        <Button onClick={this.props.generateItinerary} className="derp" bsStyle="success" bsSize="large">
-          {this.props.derping ? <LoadingBalls /> : 'DERP'}
-        </Button>
         <h2>Add events to your Itinerary</h2>
         {/* {this.props.params.skeleton.length === 0 && <h2>Add events to your Itinerary</h2>} */}
         <ReactCSSTransitionGroup
@@ -69,7 +66,7 @@ class EventGenerator extends Component {
         <Table responsive className="skeleton">
           <thead><th>Itinerary Template</th></thead>
           <tbody>
-            {this.props.params.skeleton.map((e, i) => <SkeletonItem delete={this.props.removeSkeletonItem(i)} e={e} /> )}
+            {this.props.params.skeleton.map((e, i) => <SkeletonItem key={`skeleton${i}`} delete={this.props.removeSkeletonItem(i)} e={e} /> )}
           </tbody>
         </Table>
     </div>
