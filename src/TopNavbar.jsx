@@ -1,7 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import UserLogin from './UserLogin';
-import UserSignUp from './UserSignUp';
 import './styles/top-navbar.scss';
 
 class TopNavbar extends Component {

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import EventGenerator from './EventGenerator';
 import EventContainer from './EventContainer';
-import { Button, NavItem } from 'react-bootstrap';
+import { NavItem } from 'react-bootstrap';
 import UserSignUp from './UserSignUp';
 import './styles/main-container.scss';
 

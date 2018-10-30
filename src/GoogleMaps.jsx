@@ -34,6 +34,7 @@ class Map extends Component {
 
   onMapLoad = (map, itinerary, userCoords) => {
 
+    // eslint-disable-next-line
     const userLocation = new window.google.maps.Marker({
       clickable: false,
       icon: new window.google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
