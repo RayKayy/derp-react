@@ -1,7 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import UserLogin from './UserLogin';
-import UserSignUp from './UserSignUp';
 import './styles/top-navbar.scss';
 
 class TopNavbar extends Component {
@@ -26,9 +25,6 @@ class TopNavbar extends Component {
               </Fragment>
               ) : (
               <Fragment>
-                <NavItem eventKey={1} >
-                  <UserSignUp checkLogin={this.props.checkLogin} />
-                </NavItem>
                 <NavItem eventKey={2}>
                   <UserLogin checkLogin={this.props.checkLogin} />
                 </NavItem>

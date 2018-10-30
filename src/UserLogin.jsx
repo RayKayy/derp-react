@@ -28,7 +28,7 @@ class UserLogin extends Component {
       password: this.state.password
     })
       .then((response) => {
-        if(response.data.error){
+        if(response.data.error) {
           this.setState({
             show: true,
             error: true,

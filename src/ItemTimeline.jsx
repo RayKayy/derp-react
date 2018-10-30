@@ -65,6 +65,8 @@ const ItemTimeline = (props) => {
                 <Panel.Body className="event-body">
                   <Image className="event-img" src={posterUrl} rounded responsive />
                   <ListGroup>
+                    <ListGroupItem><strong>Cinema Name: </strong>{props.event.cinema.name}</ListGroupItem>
+                    <ListGroupItem><strong>Address: </strong>{props.event.cinema.location.address.display_text}</ListGroupItem>
                     <ListGroupItem><strong>Showtime: </strong>{new Date(props.event.start_at).toString().slice(0, -33)}</ListGroupItem>
                     <ListGroupItem><strong>Synopsis: </strong>{props.event.synopsis}</ListGroupItem>
                     <ListGroupItem><strong>Runtime: </strong>{props.event.runtime} Minutes</ListGroupItem>

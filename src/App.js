@@ -41,7 +41,16 @@ class App extends Component {
   _handleLogout = () => {
     axios.get('/logout')
       .then((response) => {
-        this.setState({ userinfo: {} })
+        this.setState({
+          userinfo: {},
+          events: [],
+          showForm: true,
+          params: {
+            skeleton: [],
+            startTime: new Date(),
+            endTime: moment(new Date()).add(1, 'd').toDate()
+          }
+        })
       })
   }
 
@@ -117,6 +126,7 @@ class App extends Component {
         <TopNavbar userinfo={this.state.userinfo} logout={this._handleLogout} checkLogin={this._checkLogin} />
         {this.state.showWelcome && <h1>Welcome! Plan you day with just a click of a button!!!</h1>}
         <MainContainer
+          checkLogin={this._checkLogin}
           params={this.state.params}
           addSkeleton={this._addSkeleton}
           handleDate={this._handleDate}

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { ButtonToolbar, Button, Modal, Form, FormGroup, Col, FormControl, NavItem } from 'react-bootstrap';
+import { ButtonToolbar, Button, Modal, Form, FormGroup, Col, FormControl } from 'react-bootstrap';
 import axios from 'axios';
+import ErrorSignUp from './ErrorSignUp';
 import './styles/login-signup.scss';
 
 class UserSignUp extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      show: false
+      show: false,
+      error: false
     };
   }
 
@@ -16,10 +18,11 @@ class UserSignUp extends Component {
   }
 
   handleHide = () => {
-    this.setState({ show: false });
+    this.setState({ show: false, error: false });
   }
 
   handleRegistration = () => {
+    this.setState({ error: false });
     axios.post('/register', {
       name: this.state.name,
       email: this.state.email,
@@ -27,18 +30,29 @@ class UserSignUp extends Component {
       password_confirmation: this.state.password_confirmation
     })
       .then((response) => {
-        console.log(response);
-        this.setState({
-          show: false,
-          name: '',
-          email: '',
-          password: '',
-          password_confirmation: ''
-        });
+        if (response.data.error) {
+          this.setState({
+            show: true,
+            error: true,
+            password: '',
+            password_confirmation: ''
+          });
+        } else {
+          this.setState({
+            show: false,
+            error: false
+          });
+        }
         this.props.checkLogin();
       })
       .catch((error) => {
         console.log(error);
+        this.setState({
+          show: true,
+          error: true,
+          password: '',
+          password_confirmation: ''
+        });
       });
 
   }
@@ -50,9 +64,12 @@ class UserSignUp extends Component {
   render() {
     return (
       <ButtonToolbar>
-        <NavItem className="sign-up-link" onClick={this.handleShow}>
+        <Button className="createAccount" bsStyle="success" bsSize="large" onClick={this.handleShow}>
+          CREATE A FREE ACCOUNT NOW
+        </Button>
+        {/* <NavItem className="sign-up-link" >
           Sign Up
-        </NavItem>
+        </NavItem> */}
 
         <Modal
           {...this.props}
@@ -67,6 +84,7 @@ class UserSignUp extends Component {
           </Modal.Header>
           <Modal.Body>
             <p>
+              <ErrorSignUp error={this.state.error} />
               <Form horizontal>
                 <FormGroup controlId="formHorizontalText">
                   <Col sm={2}>
@@ -91,7 +109,7 @@ class UserSignUp extends Component {
                     Password
                   </Col>
                   <Col sm={10}>
-                    <FormControl onChange={this.handleFormChange('password')} type="password" placeholder="Password" />
+                    <FormControl value={this.state.password} onChange={this.handleFormChange('password')} type="password" placeholder="Password" />
                   </Col>
                 </FormGroup>
 
@@ -100,7 +118,7 @@ class UserSignUp extends Component {
                     Confirm Password
                   </Col>
                   <Col sm={10}>
-                    <FormControl onChange={this.handleFormChange('password_confirmation')} type="password" placeholder="Password" />
+                    <FormControl value={this.state.password_confirmation} onChange={this.handleFormChange('password_confirmation')} type="password" placeholder="Password" />
                   </Col>
                 </FormGroup>
 
