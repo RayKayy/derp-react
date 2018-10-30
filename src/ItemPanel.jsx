@@ -17,7 +17,7 @@ const ItemPanel = (props) => {
                 <ListGroup>
                   <ListGroupItem><strong>Category:</strong> {props.event.categories[0].title}</ListGroupItem>
                   <ListGroupItem><strong>Address:</strong> {props.event.location.display_address.join(" ")}</ListGroupItem>
-                <ListGroupItem><strong>Contact:</strong> {props.event.display_phone ? props.event.display_phone : 'N/A'}</ListGroupItem>
+                  <ListGroupItem><strong>Contact:</strong> {props.event.display_phone ? props.event.display_phone : 'N/A'}</ListGroupItem>
                   <ListGroupItem>
                     <a rel="noopener noreferrer" target="_blank" href={props.event.url}>
                       <img className="yelp-logo" src="./yelp-logo.png" alt="Yelp Logo" />
@@ -46,6 +46,8 @@ const ItemPanel = (props) => {
               <Panel.Body className="event-body">
                 <Image className="event-img" src={posterUrl} rounded responsive />
                 <ListGroup>
+                  <ListGroupItem><strong>Cinema Name: </strong>{props.event.cinema.name}</ListGroupItem>
+                  <ListGroupItem><strong>Address: </strong>{props.event.cinema.location.address.display_text}</ListGroupItem>
                   <ListGroupItem><strong>Showtime: </strong>{new Date(props.event.start_at).toString().slice(0, -33)}</ListGroupItem>
                   <ListGroupItem><strong>Synopsis: </strong>{props.event.synopsis}</ListGroupItem>
                   <ListGroupItem><strong>Runtime: </strong>{props.event.runtime} Minutes</ListGroupItem>
