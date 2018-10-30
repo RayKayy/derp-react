@@ -26,9 +26,6 @@ class TopNavbar extends Component {
               </Fragment>
               ) : (
               <Fragment>
-                <NavItem eventKey={1} >
-                  <UserSignUp checkLogin={this.props.checkLogin} />
-                </NavItem>
                 <NavItem eventKey={2}>
                   <UserLogin checkLogin={this.props.checkLogin} />
                 </NavItem>

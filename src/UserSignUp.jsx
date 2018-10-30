@@ -50,9 +50,12 @@ class UserSignUp extends Component {
   render() {
     return (
       <ButtonToolbar>
-        <NavItem className="sign-up-link" onClick={this.handleShow}>
+        <Button className="createAccount" bsStyle="success" bsSize="large" onClick={this.handleShow}>
+          CREATE A FREE ACCOUNT NOW
+        </Button>
+        {/* <NavItem className="sign-up-link" >
           Sign Up
-        </NavItem>
+        </NavItem> */}
 
         <Modal
           {...this.props}
