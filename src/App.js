@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/App.scss';
 import 'react-vertical-timeline-component/style.min.css';
 import TopNavbar from './TopNavbar';
-import MainContainer from './Main-container';
+import MainContainer from './MainContainer';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -55,7 +55,6 @@ class App extends Component {
   _generateItinerary = () => {
     console.log(this.state.params);
     this.setState({
-      showForm: false,
       derping: true,
     })
     axios.post('/itineraries', { ...this.state.params })
@@ -64,6 +63,7 @@ class App extends Component {
         this.setState({
           events: res.data.itinerary,
           route: res.data.google_directions,
+          showForm: false,
           showWelcome: false,
           derping: false,
         });
@@ -115,7 +115,7 @@ class App extends Component {
     return (
       <div className="App">
         <TopNavbar userinfo={this.state.userinfo} logout={this._handleLogout} checkLogin={this._checkLogin} />
-        {this.state.showWelcome && <h1>Welcome User! Plan you day with just a click of a button!!!</h1>}
+        {this.state.showWelcome && <h1>Welcome! Plan you day with just a click of a button!!!</h1>}
         <MainContainer
           params={this.state.params}
           addSkeleton={this._addSkeleton}
@@ -132,6 +132,7 @@ class App extends Component {
           userGivenLocation={this.state.params.coords}
           route={this.state.route}
           derping={this.state.derping}
+          userinfo={this.state.userinfo}
         />
       </div>
     );

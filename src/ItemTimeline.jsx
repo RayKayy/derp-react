@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { VerticalTimelineElement } from 'react-vertical-timeline-component';
 import { Panel, Image, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import * as FontAwesome from 'react-icons/fa'
+import './styles/item.scss';
 
 const ItemTimeline = (props) => {
   switch (props.event.type) {
@@ -94,7 +95,7 @@ const ItemTimeline = (props) => {
       return (
         <VerticalTimelineElement
           className="vertical-timeline-element--work timeline-item"
-          iconStyle={{ background: '#fcf8e3', color: '#fff' }}
+          iconStyle={{ background: '#ffed8d', color: '#fff' }}
           icon={<FontAwesome.FaExclamation />}
         >
           <Panel className="event-item" bsStyle="warning">

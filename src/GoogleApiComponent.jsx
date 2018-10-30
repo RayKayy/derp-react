@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, Button, Modal} from 'react-bootstrap';
 import Map from './GoogleMaps';
-// import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
+import * as FontAwesome from 'react-icons/fa'
 import './styles/googleApiComponent.scss';
 
 class GoogleApiComponent extends Component {
@@ -26,7 +26,7 @@ class GoogleApiComponent extends Component {
     return (
       <ButtonToolbar>
         <Button bsStyle="primary" onClick={this.handleShow}>
-          View Locations On Map
+          Map & Routes <FontAwesome.FaMapMarkedAlt />
         </Button>
 
         <Modal
@@ -37,7 +37,7 @@ class GoogleApiComponent extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-lg">
-              Itinerary Route
+              Itinerary Locations & Route
             </Modal.Title>
           </Modal.Header>
           <Map params={this.props.params} userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} route={this.props.route} />

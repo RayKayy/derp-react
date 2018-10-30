@@ -14,6 +14,8 @@
   border-radius: 10px;
   color: white;
   text-shadow: 1px 1px black;
+  padding-bottom: 3em;
+  padding-top: 3em;
 
   .loading {
     margin: auto;
@@ -29,7 +31,7 @@
     text-transform:uppercase;
     font-size:3vw;
     font-weight:bold;
-    margin-top: 5%;
+    margin-bottom: .5em;
   }
 
   @keyframes slidebg {

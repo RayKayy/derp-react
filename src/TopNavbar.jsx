@@ -8,7 +8,7 @@ class TopNavbar extends Component {
 
   render() {
     return (
-      <Navbar default collapseOnSelect id="top-nav">
+      <Navbar default collapseOnSelect id="top-nav" fixedTop={true}>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="/">DERP</a>

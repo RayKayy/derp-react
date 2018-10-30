@@ -10,6 +10,8 @@
   align-items: center;
   flex-direction: column;
   color: black;
+  text-shadow: 0 0 black;
+  margin-bottom: 3em;
 }
 
 .event-img {
@@ -20,6 +22,7 @@
 
 .event-item {
   width: 100%;
+  margin-top: 0;
   margin-bottom: 0;
   .yelp-logo {
     max-height: 3em;
@@ -35,7 +38,9 @@
     background-color:  rgba(0, 0, 0, 0);
   }
   .vertical-timeline-element-icon {
-  display: none;
+    width: .5em;
+    height: .5em;
+    transform: translate(1.2em, 1em);
   }
 }
 
@@ -69,7 +74,35 @@
   border: .5em solid white;
   border-radius: 5px;
   border-style: ridge;
-  // padding-left: .8em;
+  margin-top: 0;
   padding-right: .8em;
   background: rgba(0, 0, 0, .3);
+}
+
+.itinerary-title {
+  margin-bottom: 0;
+  margin-top: 1em;
+  padding-bottom: .5em;
+  padding-top: .5em;
+  border: .3em ridge white;
+  border-bottom: 0;
+  width: 94%;
+  background: rgba(0, 0, 0, .3);
+  color: white;
+  div.loading {
+    display: inline-block;
+    float: right;
+    height: 1em !important;
+    width: 1em !important;
+    svg {
+      height: 1em;
+      transform: translate(-1em, .1em);
+    }
+  }
+
+}
+
+.reroll {
+  float: right;
+  transform: translate(-1em, .1em);
 }
