@@ -38,8 +38,8 @@ class MainContainer extends Component {
           ) : (
             <Fragment>
               <h2>Can't decide what to do today? Let us help!</h2>
-              <h4>DERP allows you to create a totally random itinerary based on a few filters for example,
-                date, time, and location.
+              <h4>DERP allows you to create a totally random itinerary
+                <h4>based on a few filters like, date, time, and location.</h4>
               </h4>
               <h4>Create a free account and start planning now.</h4>
               <NavItem>
