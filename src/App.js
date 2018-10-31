@@ -124,7 +124,7 @@ class App extends Component {
     return (
       <div className="App">
         <TopNavbar userinfo={this.state.userinfo} logout={this._handleLogout} checkLogin={this._checkLogin} />
-        {this.state.showWelcome && <h1>Welcome! Plan you day with just a click of a button!!!</h1>}
+        {this.state.showWelcome && <h1>Welcome! Plan you day with just a click of a button!</h1>}
         <MainContainer
           checkLogin={this._checkLogin}
           params={this.state.params}
