@@ -7,6 +7,7 @@ import Datetime from 'react-datetime';
 import LocationSelect from './LocationSelect';
 import SkeletonItem from './SkeletonItem';
 import LoadingBalls from './LoadingBalls'
+import moment from 'moment';
 import * as FontAwesome from 'react-icons/fa';
 
 class EventGenerator extends Component {
@@ -54,9 +55,9 @@ class EventGenerator extends Component {
               <FormGroup controlId="formControlsSelect">
                 <LocationSelect userInputedLocation={this.props.userInputedLocation} />
                 <h5>Select start time</h5>
-                <Datetime onChange={this._handleDate} value={this.props.startTime} />
+                <Datetime defaultValue={new Date()} onChange={this._handleDate} value={this.props.startTime} />
                 <h5>Select end time</h5>
-                <Datetime onChange={this._handleEndTime} value={this.props.endTime} />
+                <Datetime defaultValue={moment(new Date()).add(1, 'd').toDate()} onChange={this._handleEndTime} value={this.props.endTime} />
                 <ControlLabel >Choose an option and click add to build an itinerary.</ControlLabel>
                 <br />
                 <Button className="add-skele" bsStyle="success" onClick={this._addSkeleton('Restaurant')} ><i className="fas fa-utensils"></i> Restaurant <i className="fas fa-plus"></i></Button>
