@@ -27,15 +27,18 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this._getLocation();
+    this._checkLogin();
+      // this._getItinerary(this.state.params)
+  }
+
+  _getLocation = () => {
     navigator.geolocation.getCurrentPosition((position)=>{
       this.setState({params: {
         ...this.state.params,
         coords: {lng: position.coords.longitude, lat: position.coords.latitude}
       }});
     });
-
-    this._checkLogin();
-      // this._getItinerary(this.state.params)
   }
 
   _handleLogout = () => {
@@ -51,6 +54,7 @@ class App extends Component {
             endTime: moment(new Date()).add(1, 'd').toDate()
           }
         })
+         this._getLocation();
       })
   }
 
