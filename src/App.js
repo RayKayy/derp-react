@@ -48,20 +48,22 @@ class App extends Component {
           userinfo: {},
           events: [],
           showForm: true,
-          params: {
-            skeleton: [],
-            startTime: new Date(),
-            endTime: moment(new Date()).add(1, 'd').toDate()
-          }
         })
-         this._getLocation();
       })
   }
 
   _checkLogin = () => {
     axios.get('/loggedin')
     .then(res => {
-      this.setState({ userinfo: res.data })
+      this.setState({
+        userinfo: res.data,
+        params: {
+          skeleton: [],
+          startTime: new Date(),
+          endTime: moment(new Date()).add(1, 'd').toDate()
+        }
+      })
+      this._getLocation()
     })
   }
 
