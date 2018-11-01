@@ -27,15 +27,18 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this._getLocation();
+    this._checkLogin();
+      // this._getItinerary(this.state.params)
+  }
+
+  _getLocation = () => {
     navigator.geolocation.getCurrentPosition((position)=>{
       this.setState({params: {
         ...this.state.params,
         coords: {lng: position.coords.longitude, lat: position.coords.latitude}
       }});
     });
-
-    this._checkLogin();
-      // this._getItinerary(this.state.params)
   }
 
   _handleLogout = () => {
@@ -51,6 +54,7 @@ class App extends Component {
             endTime: moment(new Date()).add(1, 'd').toDate()
           }
         })
+         this._getLocation();
       })
   }
 
@@ -124,7 +128,7 @@ class App extends Component {
     return (
       <div className="App">
         <TopNavbar userinfo={this.state.userinfo} logout={this._handleLogout} checkLogin={this._checkLogin} />
-        {this.state.showWelcome && <h1>Welcome! Plan you day with just a click of a button!</h1>}
+        {this.state.showWelcome && <h1>Welcome! Plan your day with just a click of a button!</h1>}
         <MainContainer
           checkLogin={this._checkLogin}
           params={this.state.params}
