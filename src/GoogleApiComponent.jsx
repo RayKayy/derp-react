@@ -41,33 +41,6 @@ class GoogleApiComponent extends Component {
             </Modal.Title>
           </Modal.Header>
           <Map params={this.props.params} userGivenLocation={this.props.userGivenLocation} itinerary={this.props.itinerary} route={this.props.route} />
-            {/* <Map
-              google={window.google}
-              zoom={14}
-              style={style}
-              className="map"
-              initialCenter={{
-                lat: 43.653908,
-                lng: -79.384293
-              }}>
-            <DirectionsRenderer
-              options={{ draggable: true }}
-              ref={(r) => directionsRef = r}
-              onDirectionsChanged={getDirections}
-              directions={mapRoute.route} />
-
-            <Marker
-              title={'The marker`s title will appear as a tooltip.'}
-              name={'SOMA'}
-              position={{ lat: 37.778519, lng: -122.405640 }} />
-
-
-              <InfoWindow onClose={this.onInfoWindowClose}>
-                <div>
-                  <h1>hi</h1>
-                </div>
-              </InfoWindow>
-            </Map> */}
           <Modal.Footer>
             <Button onClick={this.handleHide}>Close</Button>
           </Modal.Footer>
